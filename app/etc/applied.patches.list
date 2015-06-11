@@ -23,3 +23,8 @@ patching file app/code/core/Mage/Usa/sql/usa_setup/upgrade-1.6.0.1.1.1-1.6.0.1.1
 patching file app/code/core/Mage/Usa/Model/Shipping/Carrier/Usps.php
 
 
+2015-06-11 10:04:59 UTC | SUPEE-1533 | EE_1.12 | v1 | _ | n/a | SUPEE-1533_EE_1.12_v1.patch
+patching file app/code/core/Mage/Adminhtml/Block/Dashboard/Graph.php
+patching file app/code/core/Mage/Adminhtml/controllers/DashboardController.php
+
+

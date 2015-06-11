@@ -19,3 +19,7 @@ patching file app/code/core/Mage/Usa/etc/config.xml
 patching file app/code/core/Mage/Usa/sql/usa_setup/upgrade-1.6.0.1.1.1-1.6.0.1.1.2.php
 
 
+2015-06-11 10:03:42 UTC | SUPEE-4334-v1.11.1.0 | EE_1.11.1.0 | v1 | 40f5a2e4db9ca53dc6a8e62eb0c728fd63b1157e | Wed Sep 10 10:42:31 2014 -0700 | ef80f7bff749c941b4d1736cc2b502888e7540c9
+patching file app/code/core/Mage/Usa/Model/Shipping/Carrier/Usps.php
+
+

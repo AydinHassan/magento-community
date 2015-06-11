@@ -10,3 +10,12 @@ patching file app/code/core/Mage/Install/etc/config.xml
 patching file app/code/core/Zend/Pdf/FileParserDataSource.php
 
 
+2015-06-11 10:02:27 UTC | SUPEE-1868-1-12-0-2 | EE_1.12.0.2 | v1 | 2148b1b6be28a9bad0bec9a4aecc63ed318dd201 | Fri Jul 26 13:20:27 2013 -0700 | v1.12.0.2..HEAD
+patching file app/code/core/Mage/Paypal/Model/Express/Checkout.php
+patching file app/code/core/Mage/Usa/Helper/Data.php
+patching file app/code/core/Mage/Usa/Model/Shipping/Carrier/Usps.php
+patching file app/code/core/Mage/Usa/Model/Shipping/Carrier/Usps/Source/Method.php
+patching file app/code/core/Mage/Usa/etc/config.xml
+patching file app/code/core/Mage/Usa/sql/usa_setup/upgrade-1.6.0.1.1.1-1.6.0.1.1.2.php
+
+

@@ -19,22 +19,21 @@
  * needs please refer to http://www.magentocommerce.com for more information.
  *
  * @category    Mage
- * @package     Mage_Usa
- * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @package     Mage_Install
+ * @copyright   Copyright (c) 2015 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
-
-class Mage_Usa_Model_Shipping_Carrier_Usps_Source_Method
+class Mage_Install_Controller_Router_Install extends Mage_Core_Controller_Varien_Router_Standard
 {
-    public function toOptionArray()
+    /**
+     * Check if current controller instance is allowed in current router.
+     * 
+     * @param Mage_Core_Controller_Varien_Action $controllerInstance
+     * @return boolean
+     */
+    protected function _validateControllerInstance($controllerInstance)
     {
-        /** @var $usps Mage_Usa_Model_Shipping_Carrier_Usps */
-        $usps = Mage::getSingleton('usa/shipping_carrier_usps');
-        $arr = array();
-        foreach ($usps->getCode('method') as $k => $v) {
-            $arr[] = array('value' => $k, 'label' => Mage::helper('usa')->__($v));
-        }
-        return $arr;
+        return $controllerInstance instanceof Mage_Install_Controller_Action;
     }
 }

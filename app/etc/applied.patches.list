@@ -1,0 +1,59 @@
+2015-06-11 09:59:19 UTC | SUPEE-2677 | EE_1.13.0.2 | v2 | d20e6763cd0df70c4ac6e418c9775a1ff0f2618f | Tue Jan 14 17:49:25 2014 +0200 | v1.13.0.2..HEAD
+patching file app/code/core/Mage/Cms/Helper/Wysiwyg/Images.php
+patching file app/code/core/Mage/Cms/Model/Wysiwyg/Images/Storage.php
+
+
+2015-06-11 10:00:30 UTC | SUPEE-2629 | EE_1.12.0.0 | v1 | 5de775cf535e137b0b099d8066bd5b3a81f7ec4c | Wed Dec 11 16:50:40 2013 +0200 | v1.12.0.0..HEAD
+patching file app/code/core/Mage/Catalog/Model/Product.php
+patching file app/code/core/Mage/Core/Controller/Varien/Router/Standard.php
+patching file app/code/core/Mage/Install/etc/config.xml
+patching file app/code/core/Zend/Pdf/FileParserDataSource.php
+
+
+2015-06-11 10:02:27 UTC | SUPEE-1868-1-12-0-2 | EE_1.12.0.2 | v1 | 2148b1b6be28a9bad0bec9a4aecc63ed318dd201 | Fri Jul 26 13:20:27 2013 -0700 | v1.12.0.2..HEAD
+patching file app/code/core/Mage/Paypal/Model/Express/Checkout.php
+patching file app/code/core/Mage/Usa/Helper/Data.php
+patching file app/code/core/Mage/Usa/Model/Shipping/Carrier/Usps.php
+patching file app/code/core/Mage/Usa/Model/Shipping/Carrier/Usps/Source/Method.php
+patching file app/code/core/Mage/Usa/etc/config.xml
+patching file app/code/core/Mage/Usa/sql/usa_setup/upgrade-1.6.0.1.1.1-1.6.0.1.1.2.php
+
+
+2015-06-11 10:03:42 UTC | SUPEE-4334-v1.11.1.0 | EE_1.11.1.0 | v1 | 40f5a2e4db9ca53dc6a8e62eb0c728fd63b1157e | Wed Sep 10 10:42:31 2014 -0700 | ef80f7bff749c941b4d1736cc2b502888e7540c9
+patching file app/code/core/Mage/Usa/Model/Shipping/Carrier/Usps.php
+
+
+2015-06-11 10:04:59 UTC | SUPEE-1533 | EE_1.12 | v1 | _ | n/a | SUPEE-1533_EE_1.12_v1.patch
+patching file app/code/core/Mage/Adminhtml/Block/Dashboard/Graph.php
+patching file app/code/core/Mage/Adminhtml/controllers/DashboardController.php
+
+
+2015-06-11 10:06:09 UTC | SUPEE-5345 | EE_1.12.0.2 | v1 | 2d36f61cf684ed26286b6d10307fcb99dd47ff02 | Thu Feb 5 19:39:01 2015 +0200 | v1.12.0.2..HEAD
+patching file app/code/core/Mage/Admin/Model/Observer.php
+patching file app/code/core/Mage/Core/Controller/Request/Http.php
+patching file app/code/core/Mage/Oauth/controllers/Adminhtml/Oauth/AuthorizeController.php
+patching file lib/Varien/Db/Adapter/Pdo/Mysql.php
+
+
+2015-06-11 10:12:22 UTC | SUPEE-5994 | CE_1.6.0.0 | v1 | _ | n/a | SUPEE-5994_CE_1.6.0.0_v1.patch
+patching file app/code/core/Mage/Authorizenet/controllers/Directpost/PaymentController.php
+patching file app/code/core/Mage/Core/Controller/Varien/Router/Admin.php
+patching file app/code/core/Mage/Core/Controller/Varien/Router/Standard.php
+patching file app/code/core/Mage/Customer/Model/Customer.php
+Hunk #1 succeeded at 259 (offset -14 lines).
+patching file app/code/core/Mage/Dataflow/Model/Convert/Parser/Csv.php
+patching file app/code/core/Mage/ImportExport/Model/Export/Adapter/Csv.php
+patching file app/code/core/Mage/Install/Controller/Router/Install.php
+patching file app/code/core/Mage/Install/etc/config.xml
+patching file app/code/core/Mage/Sales/controllers/Recurring/ProfileController.php
+patching file downloader/Maged/Model/Connect.php
+patching file downloader/Maged/View.php
+Hunk #1 succeeded at 152 with fuzz 2 (offset -10 lines).
+patching file downloader/template/connect/packages_prepare.phtml
+patching file downloader/template/messages.phtml
+patching file get.php
+patching file lib/PEAR/PEAR/PEAR.php
+patching file lib/PEAR/PEAR/PEAR5.php
+patching file lib/Varien/Io/File.php
+
+

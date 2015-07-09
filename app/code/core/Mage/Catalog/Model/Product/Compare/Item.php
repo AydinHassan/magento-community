@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Catalog
- * @copyright  Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -28,7 +28,6 @@
 /**
  * Catalog Compare Item Model
  *
- * @method Mage_Catalog_Model_Resource_Product_Compare_Item _getResource()
  * @method Mage_Catalog_Model_Resource_Product_Compare_Item getResource()
  * @method Mage_Catalog_Model_Product_Compare_Item setVisitorId(int $value)
  * @method Mage_Catalog_Model_Product_Compare_Item setCustomerId(int $value)
@@ -97,6 +96,19 @@ class Mage_Catalog_Model_Product_Compare_Item extends Mage_Core_Model_Abstract
             $this->setStoreId(Mage::app()->getStore()->getId());
         }
 
+        return $this;
+    }
+
+    /**
+     * Save object data
+     *
+     * @return Mage_Catalog_Model_Product_Compare_Item
+     */
+    public function save()
+    {
+        if ($this->hasCustomerId() || $this->hasVisitorId()) {
+            parent::save();
+        }
         return $this;
     }
 

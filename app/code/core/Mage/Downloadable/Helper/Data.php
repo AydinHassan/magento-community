@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Downloadable
- * @copyright  Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -48,8 +48,24 @@ class Mage_Downloadable_Helper_Data extends Mage_Core_Helper_Abstract
                 $shareable = (bool) $link->getIsShareable();
                 break;
             case Mage_Downloadable_Model_Link::LINK_SHAREABLE_CONFIG:
-                $shareable = (bool) Mage::getStoreConfigFlag(Mage_Downloadable_Model_Link::XML_PATH_CONFIG_IS_SHAREABLE);
+                $shareable = (bool) Mage::getStoreConfigFlag(
+                    Mage_Downloadable_Model_Link::XML_PATH_CONFIG_IS_SHAREABLE
+                );
         }
         return $shareable;
+    }
+
+    /**
+     * Return true if price in website scope
+     *
+     * @return bool
+     */
+    public function getIsPriceWebsiteScope()
+    {
+        $scope =  (int) Mage::app()->getStore()->getConfig(Mage_Core_Model_Store::XML_PATH_PRICE_SCOPE);
+        if ($scope == Mage_Core_Model_Store::PRICE_SCOPE_WEBSITE) {
+            return true;
+        }
+        return false;
     }
 }

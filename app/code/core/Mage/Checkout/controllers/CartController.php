@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Checkout
- * @copyright  Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -616,6 +616,7 @@ class Mage_Checkout_CartController extends Mage_Core_Controller_Front_Action
 
                 $result['success'] = 1;
                 $result['message'] = $this->__('Item was removed successfully.');
+                Mage::dispatchEvent('ajax_cart_remove_item_success', array('id' => $id));
             } catch (Exception $e) {
                 $result['success'] = 0;
                 $result['error'] = $this->__('Can not remove the item.');

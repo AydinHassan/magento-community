@@ -19,7 +19,7 @@
  *
  * @category    design
  * @package     base_default
- * @copyright   Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+ * @copyright   Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 var Checkout = Class.create();
@@ -746,6 +746,20 @@ Payment.prototype = {
             //Event fix for payment methods without form like "Check / Money order"
             document.body.fire('payment-method:switched', {method_code : method});
         }
+        if (method == 'free' && quoteBaseGrandTotal > 0.0001
+            && !(($('use_reward_points') && $('use_reward_points').checked) || ($('use_customer_balance') && $('use_customer_balance').checked))
+        ) {
+            if ($('p_method_' + method)) {
+                $('p_method_' + method).checked = false;
+                if ($('dt_method_' + method)) {
+                    $('dt_method_' + method).hide();
+                }
+                if ($('dd_method_' + method)) {
+                    $('dd_method_' + method).hide();
+                }
+            }
+            method == '';
+        }
         if (method) {
             this.lastUsedMethod = method;
         }
@@ -871,7 +885,11 @@ Payment.prototype = {
                 }
                 return;
             }
-            alert(response.error);
+            if (typeof(response.message) == 'string') {
+                alert(response.message);
+            } else {
+                alert(response.error);
+            }
             return;
         }
 

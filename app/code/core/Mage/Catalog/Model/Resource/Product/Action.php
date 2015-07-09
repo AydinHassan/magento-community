@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Catalog
- * @copyright  Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -58,6 +58,9 @@ class Mage_Catalog_Model_Resource_Product_Action extends Mage_Catalog_Model_Reso
      */
     public function updateAttributes($entityIds, $attrData, $storeId)
     {
+        $this->_attributeValuesToSave   = array();
+        $this->_attributeValuesToDelete = array();
+
         $object = new Varien_Object();
         $object->setIdFieldName('entity_id')
             ->setStoreId($storeId);

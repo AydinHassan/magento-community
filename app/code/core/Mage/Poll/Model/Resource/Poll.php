@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Poll
- * @copyright  Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -148,13 +148,11 @@ class Mage_Poll_Model_Resource_Poll extends Mage_Core_Model_Resource_Db_Abstract
         $select = $this->_getReadAdapter()->select()
             ->distinct()
             ->from($this->getTable('poll_vote'), 'poll_id')
-            ->where('ip_address = :ip_address');
-        $bind = array(':ip_address' => ip2long($ipAddress));
+            ->where('ip_address = ?', inet_pton($ipAddress));
         if (!empty($pollId)) {
-            $select->where('poll_id = :poll_id');
-            $bind[':poll_id'] = $pollId;
+            $select->where('poll_id = ?', $pollId);
         }
-        $result = $this->_getReadAdapter()->fetchCol($select, $bind);
+        $result = $this->_getReadAdapter()->fetchCol($select);
         if (empty($result)) {
             $result = array();
         }

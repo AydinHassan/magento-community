@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Sales
- * @copyright  Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -115,7 +115,24 @@ class Mage_Sales_Model_Observer
      */
     public function markQuotesRecollectOnCatalogRules($observer)
     {
-        Mage::getResourceSingleton('sales/quote')->markQuotesRecollectOnCatalogRules();
+        $product = $observer->getEvent()->getProduct();
+
+        if (is_numeric($product)) {
+            $product = Mage::getModel("catalog/product")->load($product);
+        }
+        if ($product instanceof Mage_Catalog_Model_Product) {
+            $childrenProductList = Mage::getSingleton('catalog/product_type')->factory($product)
+                ->getChildrenIds($product->getId(), false);
+
+            $productIdList = array($product->getId());
+            foreach ($childrenProductList as $groupData) {
+                $productIdList = array_merge($productIdList, $groupData);
+            }
+        } else {
+            $productIdList = null;
+        }
+
+        Mage::getResourceSingleton('sales/quote')->markQuotesRecollectByAffectedProduct($productIdList);
         return $this;
     }
 

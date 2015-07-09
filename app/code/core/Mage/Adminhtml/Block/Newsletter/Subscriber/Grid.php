@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Adminhtml
- * @copyright  Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -96,6 +96,12 @@ class Mage_Adminhtml_Block_Newsletter_Subscriber_Grid extends Mage_Adminhtml_Blo
         $this->addColumn('firstname', array(
             'header'    => Mage::helper('newsletter')->__('Customer First Name'),
             'index'     => 'customer_firstname',
+            'default'   =>    '----'
+        ));
+
+        $this->addColumn('middlename', array(
+            'header'    => Mage::helper('newsletter')->__('Customer Middle Name'),
+            'index'     => 'customer_middlename',
             'default'   =>    '----'
         ));
 

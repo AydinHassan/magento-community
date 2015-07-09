@@ -20,7 +20,7 @@
  *
  * @category    design
  * @package     default_default
- * @copyright   Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+ * @copyright   Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 
@@ -44,7 +44,7 @@
             <?php endif; ?>
             <button type="submit" class="button"
                     onclick="window.close();"
-                    title="<?php echo $this->__('Close') ?>">
+                    title="<?php echo $this->quoteEscape($this->__('Close')) ?>">
                 <span><span><?php echo $this->__('Close') ?></span></span>
             </button>
         </div>

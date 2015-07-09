@@ -21,12 +21,18 @@
  *
  * @category    design
  * @package     rwd_default
- * @copyright   Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+ * @copyright   Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 
 -->
 <layout version="0.1.0">
+    <default>
+        <reference name="header">
+            <block type="page/template_links" name="account.links" as="accountLinks" template="persistent/header/links.phtml"/>
+        </reference>
+    </default>
+
     <customer_account_login>
         <reference name="customer_form_login">
             <action method="setTemplate"><template>persistent/customer/form/login.phtml</template></action>

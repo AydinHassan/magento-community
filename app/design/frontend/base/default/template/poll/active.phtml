@@ -20,7 +20,7 @@
  *
  * @category    design
  * @package     base_default
- * @copyright   Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+ * @copyright   Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 ?>
@@ -58,7 +58,7 @@
             <script type="text/javascript">decorateList('poll-answers');</script>
             <?php endif; ?>
             <div class="actions">
-                <button type="submit" title="<?php echo $this->__('Vote') ?>" class="button"><span><span><?php echo $this->__('Vote') ?></span></span></button>
+                <button type="submit" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Vote')) ?>" class="button"><span><span><?php echo $this->__('Vote') ?></span></span></button>
             </div>
         </div>
     </form>

@@ -21,7 +21,7 @@
  *
  * @category    Mage
  * @package     Mage_CatalogSearch
- * @copyright   Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+ * @copyright   Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 -->
@@ -138,6 +138,7 @@
                 <max_query_words>10</max_query_words>
                 <search_type>1</search_type>
                 <use_layered_navigation_count>2000</use_layered_navigation_count>
+                <show_autocomplete_results_count>1</show_autocomplete_results_count>
             </search>
         </catalog>
     </default>

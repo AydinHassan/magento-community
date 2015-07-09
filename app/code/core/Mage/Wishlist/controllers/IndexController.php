@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Wishlist
- * @copyright  Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -524,10 +524,15 @@ class Mage_Wishlist_IndexController extends Mage_Wishlist_Controller_Abstract
 
             if (Mage::helper('checkout/cart')->getShouldRedirectToCart()) {
                 $redirectUrl = Mage::helper('checkout/cart')->getCartUrl();
-            } else if ($this->_getRefererUrl()) {
-                $redirectUrl = $this->_getRefererUrl();
             }
             Mage::helper('wishlist')->calculate();
+
+            $product = Mage::getModel('catalog/product')
+                ->setStoreId(Mage::app()->getStore()->getId())
+                ->load($item->getProductId());
+            $productName = Mage::helper('core')->escapeHtml($product->getName());
+            $message = $this->__('%s was added to your shopping cart.', $productName);
+            Mage::getSingleton('catalog/session')->addSuccess($message);
         } catch (Mage_Core_Exception $e) {
             if ($e->getCode() == Mage_Wishlist_Model_Item::EXCEPTION_CODE_NOT_SALABLE) {
                 $session->addError($this->__('This product(s) is currently out of stock'));

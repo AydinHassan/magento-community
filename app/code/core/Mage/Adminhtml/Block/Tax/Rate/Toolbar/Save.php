@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Adminhtml
- * @copyright  Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -73,7 +73,13 @@ class Mage_Adminhtml_Block_Tax_Rate_Toolbar_Save extends Mage_Adminhtml_Block_Te
             $this->getLayout()->createBlock('adminhtml/widget_button')
                 ->setData(array(
                     'label'     => Mage::helper('tax')->__('Delete Rate'),
-                    'onclick'   => 'deleteConfirm(\'' . Mage::helper('tax')->__('Are you sure you want to do this?') . '\', \'' . $this->getUrl('*/*/delete', array('rate' => $this->getRequest()->getParam('rate'))) . '\')',
+                    'onclick'   => 'deleteConfirm(\''
+                        . Mage::helper('core')->jsQuoteEscape(
+                            Mage::helper('tax')->__('Are you sure you want to do this?')
+                        )
+                        . '\', \''
+                        . $this->getUrl('*/*/delete', array('rate' => $this->getRequest()->getParam('rate')))
+                        . '\')',
                     'class' => 'delete'
                 ))
         );

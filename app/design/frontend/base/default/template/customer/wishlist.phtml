@@ -20,7 +20,7 @@
  *
  * @category    design
  * @package     base_default
- * @copyright   Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+ * @copyright   Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 
@@ -62,7 +62,7 @@
     </table>
     <div class="buttons-set">
         <a href="<?php echo Mage::getBaseUrl() ?>">&laquo; <?php echo $this->__('Continue Shopping') ?></a>
-        <input type="submit" value="<?php echo $this->__('Update') ?>" class="input-button" name="do" />
+        <input type="submit" value="<?php echo Mage::helper('core')->quoteEscape($this->__('Update')) ?>" class="input-button" name="do" />
     </div>
 </form>
 <?php else: ?>

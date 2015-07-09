@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Paypal
- * @copyright  Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -45,6 +45,9 @@ class Mage_Paypal_Block_Express_Review_Billing extends Mage_Checkout_Block_Onepa
                 $this->_address = $this->getQuote()->getBillingAddress();
                 if (!$this->_address->getFirstname()) {
                     $this->_address->setFirstname($this->getQuote()->getCustomer()->getFirstname());
+                }
+                if (!$this->_address->getMiddlename()) {
+                    $this->_address->setMiddlename($this->getQuote()->getCustomer()->getMiddlename());
                 }
                 if (!$this->_address->getLastname()) {
                     $this->_address->setLastname($this->getQuote()->getCustomer()->getLastname());

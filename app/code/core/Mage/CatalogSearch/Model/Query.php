@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_CatalogSearch
- * @copyright  Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -72,6 +72,7 @@ class Mage_CatalogSearch_Model_Query extends Mage_Core_Model_Abstract
     const XML_PATH_MIN_QUERY_LENGTH     = 'catalog/search/min_query_length';
     const XML_PATH_MAX_QUERY_LENGTH     = 'catalog/search/max_query_length';
     const XML_PATH_MAX_QUERY_WORDS      = 'catalog/search/max_query_words';
+    const XML_PATH_AJAX_SUGGESTION_COUNT = 'catalog/search/show_autocomplete_results_count';
 
     /**
      * Init resource model

@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Rule
- * @copyright  Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -113,7 +113,7 @@ abstract class Mage_Rule_Model_Condition_Product_Abstract extends Mage_Rule_Mode
     {
         $alias     = 'cpf';
         $attribute = $this->getAttribute();
-        $value     = $this->getValue();
+        $value     = $this->getValueParsed();
         $operator  = $this->correctOperator($this->getOperator(), $this->getInputType());
         if ($attribute == 'category_ids') {
             $alias     = 'ccp';
@@ -308,7 +308,11 @@ abstract class Mage_Rule_Model_Condition_Product_Abstract extends Mage_Rule_Mode
         }
 
         if (!empty($image)) {
-            $html = '<a href="javascript:void(0)" class="rule-chooser-trigger"><img src="' . $image . '" alt="" class="v-middle rule-chooser-trigger" title="' . Mage::helper('rule')->__('Open Chooser') . '" /></a>';
+            $html = '<a href="javascript:void(0)" class="rule-chooser-trigger"><img src="'
+                . $image
+                . '" alt="" class="v-middle rule-chooser-trigger" title="'
+                . Mage::helper('core')->quoteEscape(Mage::helper('rule')->__('Open Chooser'))
+                . '" /></a>';
         }
         return $html;
     }

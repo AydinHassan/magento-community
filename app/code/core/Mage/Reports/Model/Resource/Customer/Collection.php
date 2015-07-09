@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Reports
- * @copyright  Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -216,12 +216,12 @@ class Mage_Reports_Model_Resource_Customer_Collection extends Mage_Customer_Mode
             $baseSubtotalRefunded   = $adapter->getIfNullSql('orders.base_subtotal_refunded', 0);
             $baseSubtotalCanceled   = $adapter->getIfNullSql('orders.base_subtotal_canceled', 0);
 
-            $totalExpr = ($this->_addOrderStatisticsIsFilter)
-                ? "(orders.base_subtotal-{$baseSubtotalCanceled}-{$baseSubtotalRefunded})*orders.base_to_global_rate"
-                : "orders.base_subtotal-{$baseSubtotalCanceled}-{$baseSubtotalRefunded}";
+            $totalExpr = (!$this->_addOrderStatisticsIsFilter)
+                ? "(orders.base_subtotal - {$baseSubtotalCanceled} - {$baseSubtotalRefunded}) * orders.base_to_global_rate"
+                : "orders.base_subtotal - {$baseSubtotalCanceled} - {$baseSubtotalRefunded}";
 
             $select = $this->getConnection()->select();
-            $select->from(array('orders'=>$this->getTable('sales/order')), array(
+            $select->from(array('orders' => $this->getTable('sales/order')), array(
                 'orders_avg_amount' => "AVG({$totalExpr})",
                 'orders_sum_amount' => "SUM({$totalExpr})",
                 'orders_count' => 'COUNT(orders.entity_id)',

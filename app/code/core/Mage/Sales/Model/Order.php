@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Sales
- * @copyright  Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -229,6 +229,8 @@
  * @method Mage_Sales_Model_Order setCustomerEmail(string $value)
  * @method string getCustomerFirstname()
  * @method Mage_Sales_Model_Order setCustomerFirstname(string $value)
+ * @method string getCustomerMiddlename()
+ * @method Mage_Sales_Model_Order setCustomerMiddlename(string $value)
  * @method string getCustomerLastname()
  * @method Mage_Sales_Model_Order setCustomerLastname(string $value)
  * @method string getCustomerMiddlename()
@@ -2047,12 +2049,16 @@ class Mage_Sales_Model_Order extends Mage_Sales_Model_Abstract
         return $this->_relatedObjects;
     }
 
+    /**
+     * Retrieve customer name
+     *
+     * @return string
+     */
     public function getCustomerName()
     {
         if ($this->getCustomerFirstname()) {
-            $customerName = $this->getCustomerFirstname() . ' ' . $this->getCustomerLastname();
-        }
-        else {
+            $customerName = Mage::helper('customer')->getFullCustomerName($this);
+        } else {
             $customerName = Mage::helper('sales')->__('Guest');
         }
         return $customerName;

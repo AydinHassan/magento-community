@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Connect
- * @copyright  Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -274,7 +274,7 @@ class Mage_Connect_Singleconfig
 
         if ($uri && !$this->isChannel($uri)) {
             if (!isset($rest)) {
-                $rest = new Mage_Connect_Rest($config->protocol);
+                $rest = Mage_Connect_Rest_Builder::getAdapter($config->protocol);
             }
             $rest->setChannel($uri);
             $data = $rest->getChannelInfo();

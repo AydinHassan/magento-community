@@ -19,7 +19,7 @@
  *
  * @category    design
  * @package     rwd_default
- * @copyright   Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+ * @copyright   Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 function Minicart(options) {
@@ -47,7 +47,8 @@ function Minicart(options) {
 }
 
 Minicart.prototype = {
-
+    initAfterEvents : {},
+    removeItemAfterEvents : {},
     init: function() {
         var cart = this;
 
@@ -74,6 +75,13 @@ Minicart.prototype = {
             .bind('click.quantity', function() {
                 cart.processUpdateQuantity(this);
         });
+
+        for (var i in this.initAfterEvents) {
+            if (this.initAfterEvents.hasOwnProperty(i) && typeof(this.initAfterEvents[i]) === "function") {
+                this.initAfterEvents[i]();
+            }
+        }
+
     },
 
     removeItem: function(el) {
@@ -98,6 +106,11 @@ Minicart.prototype = {
                 cart.hideOverlay();
                 cart.showError(cart.defaultErrorMessage);
             });
+        }
+        for (var i in this.removeItemAfterEvents) {
+            if (this.removeItemAfterEvents.hasOwnProperty(i) && typeof(this.removeItemAfterEvents[i]) === "function") {
+                this.removeItemAfterEvents[i]();
+            }
         }
     },
 

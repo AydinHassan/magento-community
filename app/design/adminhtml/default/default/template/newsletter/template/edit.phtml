@@ -20,7 +20,7 @@
  *
  * @category    design
  * @package     default_default
- * @copyright   Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+ * @copyright   Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 /* @var $this Mage_Adminhtml_Block_Newsletter_Template_Edit */
@@ -79,7 +79,7 @@
         },
 
         stripTags: function () {
-            if(!window.confirm("<?php echo Mage::helper('newsletter')->__('Are you sure that you want to strip all tags?') ?>")) {
+            if(!window.confirm("<?php echo Mage::helper('core')->jsQuoteEscape(Mage::helper('newsletter')->__('Are you sure that you want to strip all tags?')) ?>")) {
                 return false;
             }
             if(this.isEditor()) {
@@ -125,7 +125,7 @@
             }
 
             if($F('code').blank() || $F('code')==templateControl.templateName) {
-               value = prompt('<?php echo Mage::helper('newsletter')->__('Please enter new template name') ?>', templateControl.templateName + '<?php echo Mage::helper('newsletter')->__(' Copy') ?>');
+               value = prompt('<?php echo Mage::helper('core')->jsQuoteEscape(Mage::helper('newsletter')->__('Please enter new template name')) ?>', templateControl.templateName + '<?php echo Mage::helper('core')->jsQuoteEscape(Mage::helper('newsletter')->__(' Copy')) ?>');
                if(!value) {
                    if(value !== null) {
                        $('code').value = '';
@@ -170,7 +170,7 @@
         },
 
         deleteTemplate: function() {
-            if(window.confirm("<?php echo Mage::helper('newsletter')->__('Are you sure that you want to delete this template?') ?>")) {
+            if(window.confirm("<?php echo Mage::helper('core')->jsQuoteEscape(Mage::helper('newsletter')->__('Are you sure that you want to delete this template?')) ?>")) {
                    window.location.href = '<?php echo $this->getDeleteUrl() ?>';
             }
         },

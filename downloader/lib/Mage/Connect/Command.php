@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Connect
- * @copyright  Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -276,7 +276,7 @@ class Mage_Connect_Command
     public function rest()
     {
         if(is_null(self::$_rest)) {
-            self::$_rest = new Mage_Connect_Rest(self::config()->protocol);
+            self::$_rest = Mage_Connect_Rest_Builder::getAdapter(self::config()->protocol);
         }
         return self::$_rest;
     }

@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Customer
- * @copyright  Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -146,6 +146,67 @@ class Mage_Customer_Helper_Data extends Mage_Core_Helper_Abstract
     public function getCurrentCustomer()
     {
         return $this->getCustomer();
+    }
+
+    /**
+     * Retrieve full customer name from provided object
+     *
+     * @param Varien_Object $object
+     * @return string
+     */
+    public function getFullCustomerName($object = null)
+    {
+        $name = '';
+        if (is_null($object)) {
+            $name = $this->getCustomerName();
+        } else {
+            $config = Mage::getSingleton('eav/config');
+
+            if (
+                $config->getAttribute('customer', 'prefix')->getIsVisible()
+                && (
+                    $object->getPrefix()
+                    || $object->getCustomerPrefix()
+                    )
+                ) {
+                    $name .= ($object->getPrefix() ? $object->getPrefix() : $object->getCustomerPrefix()) . ' ';
+            }
+
+            $name .= $object->getFirstname() ? $object->getFirstname() : $object->getCustomerFirstname();
+
+            if ($config->getAttribute('customer', 'middlename')->getIsVisible()
+                && (
+                    $object->getMiddlename()
+                    || $object->getCustomerMiddlename()
+                    )
+                ) {
+                    $name .= ' ' . (
+                        $object->getMiddlename()
+                        ? $object->getMiddlename()
+                        : $object->getCustomerMiddlename()
+                    );
+            }
+
+            $name .= ' ' . (
+                $object->getLastname()
+                ? $object->getLastname()
+                : $object->getCustomerLastname()
+            );
+
+            if ($config->getAttribute('customer', 'suffix')->getIsVisible()
+                && (
+                    $object->getSuffix()
+                    || $object->getCustomerSuffix()
+                    )
+                ) {
+                    $name .= ' ' . (
+                        $object->getSuffix()
+                        ? $object->getSuffix()
+                        : $object->getCustomerSuffix()
+                    );
+            }
+        }
+        return $name;
     }
 
     /**

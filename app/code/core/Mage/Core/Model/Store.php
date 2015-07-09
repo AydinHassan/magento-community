@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Core
- * @copyright  Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -773,10 +773,10 @@ class Mage_Core_Model_Store extends Mage_Core_Model_Abstract
             if (!$secureBaseUrl) {
                 return false;
             }
-
-            $uri = Zend_Uri::factory($secureBaseUrl);
-            $port = $uri->getPort();
-            $isSecure = ($uri->getScheme() == 'https')
+            $urlParts = parse_url($secureBaseUrl);
+            $scheme   = isset($urlParts['scheme']) ? ':' . $urlParts['scheme'] : '';
+            $port     = isset($urlParts['port']) ? ':' . $urlParts['port'] : '';
+            $isSecure = ($scheme == 'https')
                 && isset($_SERVER['SERVER_PORT'])
                 && ($port == $_SERVER['SERVER_PORT']);
             return $isSecure;

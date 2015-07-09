@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Page
- * @copyright  Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -48,15 +48,16 @@ class Mage_Page_Block_Html_Topmenu extends Mage_Core_Block_Template
     protected $_currentEntityKey;
 
     /**
-     * Init top menu tree structure
+     * Init top menu tree structure and cache
      */
     public function _construct()
     {
         $this->_menu = new Varien_Data_Tree_Node(array(), 'root', new Varien_Data_Tree());
-
-        $this->addData(array(
-            'cache_lifetime' => false,
-        ));
+        /*
+        * setting cache to save the topmenu block
+        */
+        $this->setCacheTags(array(Mage_Catalog_Model_Category::CACHE_TAG));
+        $this->setCacheLifetime(false);
     }
 
     /**

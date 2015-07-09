@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_ImportExport
- * @copyright  Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -77,6 +77,8 @@ abstract class Mage_ImportExport_Model_Import_Adapter_Abstract implements Seekab
      */
     final public function __construct($source)
     {
+        register_shutdown_function(array($this, 'destruct'));
+
         if (!is_string($source)) {
             Mage::throwException(Mage::helper('importexport')->__('Source file path must be a string'));
         }
@@ -97,6 +99,13 @@ abstract class Mage_ImportExport_Model_Import_Adapter_Abstract implements Seekab
         } else {
             Mage::throwException(Mage::helper('importexport')->__('Column names is empty or is not an array'));
         }
+    }
+
+    /**
+     * Destruct method on shutdown
+     */
+    public function destruct()
+    {
     }
 
     /**

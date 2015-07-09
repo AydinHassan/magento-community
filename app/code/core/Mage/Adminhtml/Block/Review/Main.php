@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Adminhtml
- * @copyright  Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -46,8 +46,7 @@ class Mage_Adminhtml_Block_Review_Main extends Mage_Adminhtml_Block_Widget_Grid_
         $customerName = '';
         if ($customerId) {
             $customer = Mage::getModel('customer/customer')->load($customerId);
-            $customerName = $customer->getFirstname() . ' ' . $customer->getLastname();
-            $customerName = $this->escapeHtml($customerName);
+            $customerName = $this->escapeHtml($customer->getName());
         }
         $productId = $this->getRequest()->getParam('productId', false);
         $productName = null;

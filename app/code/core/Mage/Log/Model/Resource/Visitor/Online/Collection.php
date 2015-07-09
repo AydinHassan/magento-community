@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Log
- * @copyright  Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -60,9 +60,10 @@ class Mage_Log_Model_Resource_Visitor_Online_Collection extends Mage_Core_Model_
         $customer   = Mage::getModel('customer/customer');
         // alias => attribute_code
         $attributes = array(
-            'customer_lastname'     => 'lastname',
-            'customer_firstname'    => 'firstname',
-            'customer_email'        => 'email'
+            'customer_lastname'   => 'lastname',
+            'customer_middlename' => 'middlename',
+            'customer_firstname'  => 'firstname',
+            'customer_email'      => 'email'
         );
 
         foreach ($attributes as $alias => $attributeCode) {

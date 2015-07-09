@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Customer
- * @copyright  Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -200,7 +200,7 @@ class Mage_Customer_Model_Resource_Setup extends Mage_Eav_Model_Entity_Setup
                         'input'              => 'text',
                         'required'           => false,
                         'sort_order'         => 50,
-                        'visible'            => false,
+                        'visible'            => true,
                         'system'             => false,
                         'position'           => 50,
                     ),
@@ -359,7 +359,7 @@ class Mage_Customer_Model_Resource_Setup extends Mage_Eav_Model_Entity_Setup
                         'input'              => 'text',
                         'required'           => false,
                         'sort_order'         => 30,
-                        'visible'            => false,
+                        'visible'            => true,
                         'system'             => false,
                         'position'           => 30,
                     ),

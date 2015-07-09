@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Core
- * @copyright  Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -182,7 +182,12 @@ class Mage_Core_Model_Url_Rewrite_Request
      */
     protected function _setStoreCodeCookie($storeCode)
     {
-        $this->_app->getCookie()->set(Mage_Core_Model_Store::COOKIE_NAME, $storeCode, true);
+        $store = $this->_app->getStore($storeCode);
+        if ($store->getWebsite()->getDefaultStore()->getId() == $store->getId()) {
+            $this->_app->getCookie()->delete(Mage_Core_Model_Store::COOKIE_NAME);
+        } else {
+            $this->_app->getCookie()->set(Mage_Core_Model_Store::COOKIE_NAME, $storeCode, true);
+        }
     }
 
     /**

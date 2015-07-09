@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Cms
- * @copyright  Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -34,6 +34,21 @@
  */
 class Mage_Cms_Block_Widget_Block extends Mage_Core_Block_Template implements Mage_Widget_Block_Interface
 {
+    /**
+     * Initialize cache
+     *
+     * @return null
+     */
+    protected function _construct()
+    {
+        parent::_construct();
+        /*
+        * setting cache to save the cms block
+        */
+        $this->setCacheTags(array(Mage_Cms_Model_Block::CACHE_TAG));
+        $this->setCacheLifetime(false);
+    }
+
     /**
      * Storage for used widgets
      *

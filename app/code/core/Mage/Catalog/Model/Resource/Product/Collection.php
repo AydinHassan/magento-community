@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Catalog
- * @copyright  Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -452,11 +452,11 @@ class Mage_Catalog_Model_Resource_Product_Collection extends Mage_Catalog_Model_
         if ($this->isEnabledFlat()) {
             $this->getSelect()
                 ->from(array(self::MAIN_TABLE_ALIAS => $this->getEntity()->getFlatTableName()), null)
-                ->columns(array('status' => new Zend_Db_Expr(Mage_Catalog_Model_Product_Status::STATUS_ENABLED)));
+                ->where('e.status = ?', new Zend_Db_Expr(Mage_Catalog_Model_Product_Status::STATUS_ENABLED));
             $this->addAttributeToSelect(array('entity_id', 'type_id', 'attribute_set_id'));
             if ($this->getFlatHelper()->isAddChildData()) {
                 $this->getSelect()
-                    ->where('e.is_child=?', 0);
+                    ->where('e.is_child = ?', 0);
                 $this->addAttributeToSelect(array('child_id', 'is_child'));
             }
         } else {

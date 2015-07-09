@@ -20,7 +20,7 @@
  *
  * @category    design
  * @package     default_default
- * @copyright   Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+ * @copyright   Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 
@@ -45,11 +45,11 @@
                 <p><?php echo $this->__('After authorization application will have access to you account.'); ?></p>
                 <form id="oauth_authorize_confirm" action="<?php echo $this->getConfirmUrl() ?>" method="get">
                     <input type="hidden" name="oauth_token" value="<?php echo $this->escapeHtml($this->getToken()) ?>">
-                    <button type="submit" class="button" title="<?php echo $this->__('Authorize') ?>"><span><span><?php echo $this->__('Authorize') ?></span></span></button>
+                    <button type="submit" class="button" title="<?php echo $this->quoteEscape($this->__('Authorize')) ?>"><span><span><?php echo $this->__('Authorize') ?></span></span></button>
                 </form>
                 <form id="oauth_authorize_reject" action="<?php echo $this->getRejectUrl() ?>" method="get">
                     <input type="hidden" name="oauth_token" value="<?php echo $this->escapeHtml($this->getToken()) ?>">
-                    <button type="submit" class="button" title="<?php echo $this->__('Reject') ?>"><span><span><?php echo $this->__('Reject') ?></span></span></button>
+                    <button type="submit" class="button" title="<?php echo $this->quoteEscape($this->__('Reject')) ?>"><span><span><?php echo $this->__('Reject') ?></span></span></button>
                 </form>
             <?php endif; ?>
         </div>

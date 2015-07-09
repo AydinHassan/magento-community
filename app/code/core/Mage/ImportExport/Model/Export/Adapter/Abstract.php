@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_ImportExport
- * @copyright  Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -56,6 +56,8 @@ abstract class Mage_ImportExport_Model_Export_Adapter_Abstract
      */
     final public function __construct($destination = null)
     {
+        register_shutdown_function(array($this, 'destruct'));
+
         if (!$destination) {
             $destination = tempnam(sys_get_temp_dir(), 'importexport_');
         }
@@ -73,6 +75,13 @@ abstract class Mage_ImportExport_Model_Export_Adapter_Abstract
         $this->_destination = $destination;
 
         $this->_init();
+    }
+
+    /**
+     * Destruct method on shutdown
+     */
+    public function destruct()
+    {
     }
 
     /**

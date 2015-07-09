@@ -20,7 +20,7 @@
  *
  * @category    design
  * @package     default_default
- * @copyright   Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+ * @copyright   Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 ?>
@@ -126,7 +126,7 @@ Event.observe(window, 'load', function() {
 });
 
 Validation.addAllThese([
-    ['validate-super-product-attributes', '<?php echo Mage::helper('catalog')->__('Please select one or more attributes.') ?>', function(v) {
+    ['validate-super-product-attributes', '<?php echo Mage::helper('core')->jsQuoteEscape(Mage::helper('catalog')->__('Please select one or more attributes.')) ?>', function(v) {
                 return (v != "no-attributes");
             }]]);
 //]]>

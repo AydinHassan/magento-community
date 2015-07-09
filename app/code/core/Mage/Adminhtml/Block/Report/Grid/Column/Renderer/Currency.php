@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Adminhtml
- * @copyright  Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -32,7 +32,8 @@
  * @author      Magento Core Team <core@magentocommerce.com>
  */
 
-class Mage_Adminhtml_Block_Report_Grid_Column_Renderer_Currency extends Mage_Adminhtml_Block_Widget_Grid_Column_Renderer_Currency
+class Mage_Adminhtml_Block_Report_Grid_Column_Renderer_Currency
+    extends Mage_Adminhtml_Block_Widget_Grid_Column_Renderer_Currency
 {
     /**
      * Renders grid column
@@ -50,7 +51,7 @@ class Mage_Adminhtml_Block_Report_Grid_Column_Renderer_Currency extends Mage_Adm
         }
 
         $data = floatval($data) * $this->_getRate($row);
-        $data = sprintf("%f", $data);
+        $data = sprintf("%F", $data);
         $data = Mage::app()->getLocale()->currency($currency_code)->toCurrency($data);
         return $data;
     }

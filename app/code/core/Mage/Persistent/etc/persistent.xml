@@ -21,17 +21,23 @@
  *
  * @category    Mage
  * @package     Mage_Persistent
- * @copyright   Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+ * @copyright   Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 -->
 <config>
     <instances>
         <blocks>
+            <header>
+                <name_in_layout>header</name_in_layout>
+                <class>persistent/observer</class>
+                <method>emulateWelcomeBlock</method>
+                <block_type>Mage_Page_Block_Html_Header</block_type>
+            </header>
             <welcome>
                 <name_in_layout>welcome</name_in_layout>
                 <class>persistent/observer</class>
-                <method>emulateWelcomeBlock</method>
+                <method>emulateWelcomeMessageBlock</method>
                 <block_type>Mage_Page_Block_Html_Welcome</block_type>
             </welcome>
             <account_links>

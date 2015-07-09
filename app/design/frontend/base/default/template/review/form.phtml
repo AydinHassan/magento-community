@@ -20,7 +20,7 @@
  *
  * @category    design
  * @package     base_default
- * @copyright   Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+ * @copyright   Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 ?>
@@ -96,7 +96,7 @@
         var dataForm = new VarienForm('review-form');
         Validation.addAllThese(
         [
-               ['validate-rating', '<?php echo $this->__('Please select one of each of the ratings above') ?>', function(v) {
+               ['validate-rating', '<?php echo Mage::helper('core')->jsQuoteEscape($this->__('Please select one of each of the ratings above')) ?>', function(v) {
                     var trs = $('product-review-table').select('tr');
                     var inputs;
                     var error = 1;

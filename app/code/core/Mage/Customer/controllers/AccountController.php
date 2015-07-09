@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Customer
- * @copyright  Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -228,9 +228,14 @@ class Mage_Customer_AccountController extends Mage_Core_Controller_Front_Action
      */
     public function logoutAction()
     {
-        $this->_getSession()->logout()
-            ->renewSession();
+        $session = $this->_getSession();
+        $session->logout()->renewSession();
 
+        if (Mage::getStoreConfigFlag(Mage_Customer_Helper_Data::XML_PATH_CUSTOMER_STARTUP_REDIRECT_TO_DASHBOARD)) {
+            $session->setBeforeAuthUrl(Mage::getBaseUrl());
+        } else {
+            $session->setBeforeAuthUrl($this->_getRefererUrl());
+        }
         $this->_redirect('*/*/logoutSuccess');
     }
 

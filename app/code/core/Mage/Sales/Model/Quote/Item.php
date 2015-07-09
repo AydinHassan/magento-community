@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Sales
- * @copyright  Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -485,7 +485,9 @@ class Mage_Sales_Model_Quote_Item extends Mage_Sales_Model_Quote_Item_Abstract
             return false;
         }
         foreach ($this->getOptions() as $option) {
-            if (in_array($option->getCode(), $this->_notRepresentOptions)) {
+            if (in_array($option->getCode(), $this->_notRepresentOptions)
+                && !$item->getProduct()->hasCustomOptions()
+            ) {
                 continue;
             }
             if ($itemOption = $item->getOptionByCode($option->getCode())) {

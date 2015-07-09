@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Persistent
- * @copyright  Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -93,7 +93,19 @@ class Mage_Persistent_Model_Observer
 
         return $this;
     }
-
+    /**
+     * Emulate welcome message with persistent data
+     *
+     * @param Mage_Core_Block_Abstract $block
+     * @return Mage_Persistent_Model_Observer
+     */
+    public function emulateWelcomeMessageBlock($block)
+    {
+        $block->setWelcome(
+            Mage::helper('persistent')->__('Welcome, %s!', Mage::helper('core')->escapeHtml($this->_getPersistentCustomer()->getName(), null))
+        );
+        return $this;
+    }
     /**
      * Emulate 'welcome' block with persistent data
      *
@@ -102,10 +114,6 @@ class Mage_Persistent_Model_Observer
      */
     public function emulateWelcomeBlock($block)
     {
-        $block->setWelcome(
-            Mage::helper('persistent')->__('Welcome, %s!', Mage::helper('core')->escapeHtml($this->_getPersistentCustomer()->getName(), null))
-        );
-
         $this->_applyAccountLinksPersistentData();
         $block->setAdditionalHtml(Mage::app()->getLayout()->getBlock('header.additional')->toHtml());
 
@@ -452,6 +460,7 @@ class Mage_Persistent_Model_Observer
                 ->setCustomerId(null)
                 ->setCustomerEmail(null)
                 ->setCustomerFirstname(null)
+                ->setCustomerMiddlename(null)
                 ->setCustomerLastname(null)
                 ->setCustomerGroupId(Mage_Customer_Model_Group::NOT_LOGGED_IN_ID)
                 ->setIsPersistent(false)

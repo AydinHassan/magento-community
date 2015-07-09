@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Newsletter
- * @copyright  Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -607,7 +607,7 @@ class Mage_Newsletter_Model_Subscriber extends Mage_Core_Model_Abstract
     {
         $name = null;
         if ($this->hasCustomerFirstname() || $this->hasCustomerLastname()) {
-            $name = $this->getCustomerFirstname() . ' ' . $this->getCustomerLastname();
+            $name = Mage::helper('customer')->getFullCustomerName($this);
         }
         return $name;
     }

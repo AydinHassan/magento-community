@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Checkout
- * @copyright  Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -306,5 +306,26 @@ class Mage_Checkout_Block_Cart_Sidebar extends Mage_Checkout_Block_Cart_Minicart
     public function getFormKey()
     {
         return Mage::getSingleton('core/session')->getFormKey();
+    }
+
+    /**
+     * Processing block html after rendering
+     *
+     * @param   string $html
+     * @return  string
+     */
+    protected function _afterToHtml($html)
+    {
+        $html = parent::_afterToHtml($html);
+        $transport = new Varien_Object();
+        $transport->setHtml($html);
+        Mage::dispatchEvent(
+            'checkout_block_cart_sidebar_aftertohtml',
+            array(
+                'block' => $this,
+                'transport' => $transport,
+            )
+        );
+        return $transport->getHtml();
     }
 }

@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Adminhtml
- * @copyright  Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -60,11 +60,12 @@ class Mage_Adminhtml_Block_Sales_Order_Creditmemo_View extends Mage_Adminhtml_Bl
         }
 
         if ($this->_isAllowedAction('emails')) {
+            $confirmationMessage = Mage::helper('core')->jsQuoteEscape(
+                Mage::helper('sales')->__('Are you sure you want to send Creditmemo email to customer?')
+            );
             $this->addButton('send_notification', array(
                 'label'     => Mage::helper('sales')->__('Send Email'),
-                'onclick'   => 'confirmSetLocation(\''
-                . Mage::helper('sales')->__('Are you sure you want to send Creditmemo email to customer?')
-                . '\', \'' . $this->getEmailUrl() . '\')'
+                'onclick'   => 'confirmSetLocation(\'' . $confirmationMessage . '\', \'' . $this->getEmailUrl() . '\')'
             ));
         }
 

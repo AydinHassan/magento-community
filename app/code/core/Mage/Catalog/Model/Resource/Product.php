@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Catalog
- * @copyright  Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -701,5 +701,31 @@ class Mage_Catalog_Model_Resource_Product extends Mage_Catalog_Model_Resource_Ab
 
         $images = $read->fetchAll($select);
         return $images;
+    }
+
+    /**
+     * Retrieve product categories
+     *
+     * @param Mage_Catalog_Model_Product $object
+     * @return array
+     */
+    public function getCategoryIdsWithAnchors($object)
+    {
+        $selectRootCategories = $this->_getReadAdapter()->select()
+            ->from(
+                array($this->getTable('catalog/category')),
+                array('entity_id')
+            )
+            ->where('level <= 1');
+        $rootIds = $this->_getReadAdapter()->fetchCol($selectRootCategories);
+        $select = $this->_getReadAdapter()->select()
+            ->from(
+                array($this->getTable('catalog/category_product_index')),
+                array('category_id')
+            )
+            ->where('product_id = ?', (int)$object->getEntityId())
+            ->where('category_id NOT IN(?)', $rootIds);
+
+        return $this->_getReadAdapter()->fetchCol($select);
     }
 }

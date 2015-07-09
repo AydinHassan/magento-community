@@ -20,7 +20,7 @@
  *
  * @category    design
  * @package     base_default
- * @copyright   Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+ * @copyright   Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 
@@ -48,7 +48,7 @@ if (window.top == window.self) {
     window.top.document.getElementById('checkout-review-submit').show();
     window.top.document.getElementById('iframe-warning').hide();
     <?php if ($this->getErrorMsg()): ?>
-        alert('<?php echo $this->getErrorMsg() ?>');
+        alert('<?php echo Mage::helper('core')->jsQuoteEscape($this->getErrorMsg()) ?>');
     <?php endif; ?>
 <?php elseif ($this->getGotoSuccessPage()) : ?>
     window.top.location="<?php echo $this->getUrl('checkout/onepage/success') ?>";

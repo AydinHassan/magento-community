@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Sales
- * @copyright  Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -88,8 +88,15 @@ class Mage_Sales_Model_Resource_Order extends Mage_Sales_Model_Resource_Order_Ab
         parent::_initVirtualGridColumns();
         $adapter       = $this->getReadConnection();
         $ifnullFirst   = $adapter->getIfNullSql('{{table}}.firstname', $adapter->quote(''));
+        $ifnullMiddle  = $adapter->getIfNullSql('{{table}}.middlename', $adapter->quote(''));
         $ifnullLast    = $adapter->getIfNullSql('{{table}}.lastname', $adapter->quote(''));
-        $concatAddress = $adapter->getConcatSql(array($ifnullFirst, $adapter->quote(' '), $ifnullLast));
+        $concatAddress = $adapter->getConcatSql(array(
+            $ifnullFirst,
+            $adapter->quote(' '),
+            $ifnullMiddle,
+            $adapter->quote(' '),
+            $ifnullLast
+        ));
         $this->addVirtualGridColumn(
                 'billing_name',
                 'sales/order_address',

@@ -20,7 +20,7 @@
  *
  * @category    design
  * @package     rwd_default
- * @copyright   Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+ * @copyright   Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 
@@ -44,7 +44,7 @@ if(empty($_cartQty)) {
 
     <p class="block-subtitle">
         <?php echo $this->__('Recently added item(s)') ?>
-        <a class="close skip-link-close" href="#" title="<?php echo $this->__('Close'); ?>">&times;</a>
+        <a class="close skip-link-close" href="#" title="<?php echo $this->quoteEscape($this->__('Close')); ?>">&times;</a>
     </p>
 
     <?php $_items = $this->getRecentItems() ?>
@@ -91,7 +91,7 @@ if(empty($_cartQty)) {
                 <ul class="checkout-types minicart">
                     <?php echo $this->getChildHtml('extra_actions') ?>
                     <li>
-                        <a title="<?php echo $this->__('Checkout') ?>" class="button checkout-button" href="<?php echo $this->getCheckoutUrl() ?>">
+                        <a title="<?php echo $this->quoteEscape($this->__('Checkout')) ?>" class="button checkout-button" href="<?php echo $this->getCheckoutUrl() ?>">
                             <?php echo $this->__('Checkout') ?>
                         </a>
                     </li>

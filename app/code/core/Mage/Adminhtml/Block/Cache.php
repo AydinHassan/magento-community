@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Adminhtml
- * @copyright  Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -41,10 +41,13 @@ class Mage_Adminhtml_Block_Cache extends Mage_Adminhtml_Block_Widget_Grid_Contai
             'class'     => 'delete',
         ));
 
-        $message = Mage::helper('core')->__('Cache storage may contain additional data. Are you sure that you want flush it?');
+        $confirmationMessage = Mage::helper('core')->jsQuoteEscape(
+            Mage::helper('core')->__('Cache storage may contain additional data. Are you sure that you want flush it?')
+        );
         $this->_addButton('flush_system', array(
             'label'     => Mage::helper('core')->__('Flush Cache Storage'),
-            'onclick'   => 'confirmSetLocation(\''.$message.'\', \'' . $this->getFlushStorageUrl() .'\')',
+            'onclick'   => 'confirmSetLocation(\'' . $confirmationMessage . '\', \'' . $this->getFlushStorageUrl()
+                . '\')',
             'class'     => 'delete',
         ));
     }

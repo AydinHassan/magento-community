@@ -20,7 +20,7 @@
  *
  * @category    design
  * @package     default_default
- * @copyright   Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+ * @copyright   Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 ?>
@@ -72,7 +72,7 @@
     <?php echo $this->getChildHtml('js') ?>
     <?php echo $this->getChildHtml('profiler') ?>
     <div id="loading-mask" style="display:none;">
-        <p class="loader" id="loading_mask_loader"><img src="<?php echo $this->getSkinUrl('images/ajax-loader-tr.gif') ?>" alt="<?php echo Mage::helper('adminhtml')->__('Loading...') ?>" /><br /><?php echo Mage::helper('adminhtml')->__('Please wait...') ?></p>
+        <p class="loader" id="loading_mask_loader"><img src="<?php echo $this->getSkinUrl('images/ajax-loader-tr.gif') ?>" alt="<?php echo Mage::helper('core')->quoteEscape(Mage::helper('adminhtml')->__('Loading...')) ?>" /><br /><?php echo Mage::helper('adminhtml')->__('Please wait...') ?></p>
     </div>
 </div>
 <?php echo $this->getChildHtml('before_body_end') ?>

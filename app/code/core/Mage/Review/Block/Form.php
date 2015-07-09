@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Review
- * @copyright  Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -50,7 +50,11 @@ class Mage_Review_Block_Form extends Mage_Core_Block_Template
             }
         }
 
-        $this->setAllowWriteReviewFlag($customerSession->isLoggedIn() || Mage::helper('review')->getIsGuestAllowToWrite());
+        $this->setAllowWriteReviewFlag(
+            $customerSession->isLoggedIn() ||
+            Mage::helper('review')->getIsGuestAllowToWrite()
+        );
+
         if (!$this->getAllowWriteReviewFlag) {
             $this->setLoginLink(
                 Mage::getUrl('customer/account/login/', array(
@@ -76,7 +80,7 @@ class Mage_Review_Block_Form extends Mage_Core_Block_Template
     public function getAction()
     {
         $productId = Mage::app()->getRequest()->getParam('id', false);
-        return Mage::getUrl('review/product/post', array('id' => $productId));
+        return Mage::getUrl('review/product/post', array('id' => $productId, '_secure' => $this->_isSecure()));
     }
 
     public function getRatings()

@@ -19,7 +19,7 @@
  *
  * @category    Mage
  * @package     Mage_Adminhtml
- * @copyright   Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright   Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 
@@ -149,7 +149,7 @@ GiftOptionsTooltip.prototype = {
                 tooltipContent = this._tooltipContentLoaderFunction(itemId);
             }
             if (tooltipContent != '') {
-                this._updateTooltipWindowContent(tooltipContent)
+                this._updateTooltipWindowContent(tooltipContent);
                 this._moveTooltip(event);
                 new Element.show(this._tooltipWindow);
                 return true;
@@ -206,6 +206,6 @@ GiftOptionsTooltip.prototype = {
     {
         this._tooltipWindowContent.update(content);
     }
-}
+};
 
 giftOptionsTooltip = new GiftOptionsTooltip();

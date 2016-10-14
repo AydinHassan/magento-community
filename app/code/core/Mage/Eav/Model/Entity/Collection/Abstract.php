@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Eav
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -918,6 +918,7 @@ abstract class Mage_Eav_Model_Entity_Collection_Abstract extends Varien_Data_Col
     /**
      * Retrive all ids sql
      *
+     * @deprecated
      * @return array
      */
     public function getAllIdsSql()
@@ -1409,6 +1410,7 @@ abstract class Mage_Eav_Model_Entity_Collection_Abstract extends Varien_Data_Col
             foreach ($attribute as $attr) {
                 parent::setOrder($attr, $dir);
             }
+            return $this;
         }
         return parent::setOrder($attribute, $dir);
     }

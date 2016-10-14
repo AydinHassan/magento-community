@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_ImportExport
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -46,6 +46,13 @@ abstract class Mage_ImportExport_Model_Export_Adapter_Abstract
      * @var array
      */
     protected $_headerCols = null;
+
+    /**
+     * Count of rows
+     *
+     * @var int
+     */
+    protected $_rowsCount = 0;
 
     /**
      * Adapter object constructor.
@@ -125,6 +132,16 @@ abstract class Mage_ImportExport_Model_Export_Adapter_Abstract
     }
 
     /**
+     * Get count of wrote lines
+     *
+     * @return int
+     */
+    public function getRowsCount()
+    {
+        return $this->_rowsCount;
+    }
+
+    /**
      * Set column names.
      *
      * @param array $headerCols
@@ -143,6 +160,15 @@ abstract class Mage_ImportExport_Model_Export_Adapter_Abstract
             fputcsv($this->_fileHandler, array_keys($this->_headerCols), $this->_delimiter, $this->_enclosure);
         }
         return $this;
+    }
+
+    /**
+     * Returns destination path
+     * @return string
+     */
+    public function getDestination()
+    {
+        return $this->_destination;
     }
 
     /**

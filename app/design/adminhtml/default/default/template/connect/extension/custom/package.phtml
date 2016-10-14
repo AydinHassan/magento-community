@@ -20,7 +20,7 @@
  *
  * @category    design
  * @package     default_default
- * @copyright   Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright   Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 ?>
@@ -44,10 +44,10 @@ function showHideFiles(button, selector, filesClass)
 
 function loadPackage()
 {
-    var package = prompt('Please enter package name');
-    if (!package) return false;
+    var packageName = prompt('Please enter package name');
+    if (!packageName) return false;
     var url = '<?php echo $this->getUrl('*/*/load') ?>';
-    location.href = url+(url.indexOf('?')==-1 ? '?':'&')+'id='+package;
+    location.href = encodeURI(url + ((url.indexOf('?') == -1) ? '?':'&') + 'id=' + packageName);
 }
 
 function saveAsPackage()

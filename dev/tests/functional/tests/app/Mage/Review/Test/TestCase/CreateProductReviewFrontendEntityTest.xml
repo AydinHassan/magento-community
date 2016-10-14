@@ -21,21 +21,21 @@
  *
  * @category    Tests
  * @package     Tests_Functional
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
  -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
-    <testCase name="Mage\Review\Test\TestCase\CreateProductReviewFrontendEntityTest">
+    <testCase name="Mage\Review\Test\TestCase\CreateProductReviewFrontendEntityTest" summary="CreateProductReviewFrontendEntityTest">
         <variation name="CreateProductReviewFrontendEntityTestVariation1">
             <data name="description" xsi:type="string">Create product review with rating</data>
             <data name="review/data/customer" xsi:type="string">Guest</data>
             <data name="review/data/nickname" xsi:type="string">name_%isolation%</data>
             <data name="review/data/title" xsi:type="string">title_%isolation%</data>
             <data name="review/data/detail" xsi:type="string">review_%isolation%</data>
-            <data name="review/data/ratings/1/dataSet" xsi:type="string">visibleOnDefaultWebsite</data>
+            <data name="review/data/ratings/1/dataset" xsi:type="string">visibleOnDefaultWebsite</data>
             <data name="review/data/ratings/1/rating" xsi:type="string">4</data>
-            <data name="review/data/entity_id/dataSet" xsi:type="string">catalogProductSimple::default</data>
+            <data name="review/data/entity_id/dataset" xsi:type="string">catalogProductSimple::default</data>
             <data name="isFirstReview" xsi:type="boolean">true</data>
             <data name="status" xsi:type="string">Pending</data>
             <constraint name="Mage\Review\Test\Constraint\AssertReviewCreationSuccessMessage" />

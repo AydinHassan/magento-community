@@ -20,7 +20,7 @@
  *
  * @category    Tests
  * @package     Tests_Functional
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -164,5 +164,14 @@ class Content extends Tab
             'Mage\Widget\Test\Block\Adminhtml\WidgetForm',
             ['element' => $this->_rootElement->find($this->widgetBlock, Locator::SELECTOR_XPATH)]
         );
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getDataFormTab($fields = null, Element $element = null)
+    {
+        $this->hideEditor();
+        return parent::getDataFormTab($fields, $element);
     }
 }

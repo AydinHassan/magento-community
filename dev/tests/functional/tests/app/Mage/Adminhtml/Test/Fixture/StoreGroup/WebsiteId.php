@@ -20,7 +20,7 @@
  *
  * @category    Tests
  * @package     Tests_Functional
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -36,7 +36,7 @@ use Mage\Adminhtml\Test\Fixture\Website;
 class WebsiteId implements FixtureInterface
 {
     /**
-     * Prepared dataSet data.
+     * Prepared dataset data.
      *
      * @var array
      */
@@ -68,8 +68,8 @@ class WebsiteId implements FixtureInterface
         if (isset($data['website'])) {
             $this->website = $data['website'];
             $this->data = $data['website']->getName();
-        } elseif (isset($data['dataSet'])) {
-            $website = $fixtureFactory->createByCode('website', ['dataSet' => $data['dataSet']]);
+        } elseif (isset($data['dataset'])) {
+            $website = $fixtureFactory->createByCode('website', ['dataset' => $data['dataset']]);
             /** @var Website $website */
             if (!$website->getWebsiteId()) {
                 $website->persist();

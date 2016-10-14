@@ -20,7 +20,7 @@
  *
  * @category    Tests
  * @package     Tests_Functional
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -30,6 +30,7 @@ use Mage\Cms\Test\Page\CmsIndex;
 use Mage\Customer\Test\Fixture\Customer;
 use Mage\Customer\Test\Page\CustomerAccountCreate;
 use Mage\Customer\Test\Page\CustomerAccountLogout;
+use Magento\Mtf\Fixture\FixtureFactory;
 use Magento\Mtf\TestCase\Injectable;
 
 /**
@@ -72,11 +73,12 @@ class CreateExistingCustomerFrontendEntity extends Injectable
     /**
      * Prepare customer.
      *
-     * @param Customer $customer
+     * @param FixtureFactory $fixtureFactory
      * @return array
      */
-    public function __prepare(Customer $customer)
+    public function __prepare(FixtureFactory $fixtureFactory)
     {
+        $customer = $fixtureFactory->createByCode('customer', ['dataset' => 'default_frontend_new']);
         $customer->persist();
 
         return ['customer' => $customer];

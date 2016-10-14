@@ -19,7 +19,7 @@
  *
  * @category    Mage
  * @package     Mage_Adminhtml
- * @copyright   Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright   Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 var varienGrid = new Class.create();
@@ -178,7 +178,7 @@ varienGrid.prototype = {
                         var responseText = transport.responseText.replace(/>\s+</g, '><');
 
                         if (transport.responseText.isJSON()) {
-                            var response = transport.responseText.evalJSON()
+                            var response = transport.responseText.evalJSON();
                             if (response.error) {
                                 alert(response.message);
                             }
@@ -898,7 +898,7 @@ serializerController.prototype = {
 
     //Stuff methods
     getGridDataHash: function (_object){
-        return $H(this.multidimensionalMode ? _object : this.convertArrayToObject(_object))
+        return $H(this.multidimensionalMode ? _object : this.convertArrayToObject(_object));
     },
     getDataForReloadParam: function(){
         return this.multidimensionalMode ? this.gridData.keys() : this.gridData.values();

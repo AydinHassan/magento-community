@@ -21,14 +21,14 @@
  *
  * @category    Tests
  * @package     Tests_Functional
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
-    <testCase name="Mage\Customer\Test\TestCase\DeleteCustomerAddressEntityTest">
+    <testCase name="Mage\Customer\Test\TestCase\DeleteCustomerAddressEntityTest" summary="DeleteCustomerAddressEntityTest">
         <variation name="DeleteCustomerAddressEntityTest1" method="test">
-            <data name="customer/dataSet" xsi:type="string">customer_with_two_addresses</data>
+            <data name="customer/dataset" xsi:type="string">customer_with_two_addresses</data>
             <constraint name="Mage\Customer\Test\Constraint\AssertAddressDeletedFrontend"/>
             <constraint name="Mage\Customer\Test\Constraint\AssertAddressDeletedBackend"/>
         </variation>

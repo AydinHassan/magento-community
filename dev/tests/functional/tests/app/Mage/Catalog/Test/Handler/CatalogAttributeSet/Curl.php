@@ -20,7 +20,7 @@
  *
  * @category    Tests
  * @package     Tests_Functional
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -119,7 +119,7 @@ class Curl extends AbstractCurl implements CatalogAttributeSetInterface
         $url = $_ENV['app_backend_url'] . 'catalog_product_set/save/';
         $curl = new BackendDecorator(new CurlTransport(), $this->_configuration);
         $curl->addOption(CURLOPT_HEADER, 1);
-        $curl->write(CurlInterface::POST, $url, '1.1', [], $data);
+        $curl->write($url, $data);
         $response = $curl->read();
         $curl->close();
 
@@ -136,7 +136,7 @@ class Curl extends AbstractCurl implements CatalogAttributeSetInterface
     {
         $url = $_ENV['app_backend_url'] . 'catalog_product_set/edit/id/' . $fixture->getAttributeSetId() . '/';
         $curl = new BackendDecorator(new CurlTransport(), $this->_configuration);
-        $curl->write(CurlInterface::POST, $url, '1.0');
+        $curl->write($url);
         $response = $curl->read();
         $curl->close();
 
@@ -155,7 +155,7 @@ class Curl extends AbstractCurl implements CatalogAttributeSetInterface
         $data = ['data' => json_encode($dataAttribute)];
         $url = $_ENV['app_backend_url'] . 'catalog_product_set/save/id/' . $attributeSetId . '/';
         $curl = new BackendDecorator(new CurlTransport(), $this->_configuration);
-        $curl->write(CurlInterface::POST, $url, '1.1', [], $data);
+        $curl->write($url, $data);
         $curl->read();
         $curl->close();
     }

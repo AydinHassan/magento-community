@@ -20,7 +20,7 @@
  *
  * @category    Tests
  * @package     Tests_Functional
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -60,7 +60,7 @@ class TestCreationForExpressCheckoutWithinPayPalButtonTest extends Scenario
     public function __prepare(FixtureFactory $fixtureFactory)
     {
         $this->objectManager->create('Mage\Tax\Test\TestStep\DeleteAllTaxRulesStep')->run();
-        $paypalCustomer = $fixtureFactory->create('Mage\Paypal\Test\Fixture\PaypalCustomer', ['dataSet' => 'default']);
+        $paypalCustomer = $fixtureFactory->create('Mage\Paypal\Test\Fixture\PaypalCustomer', ['dataset' => 'default']);
 
         return ['paypalCustomer' => $paypalCustomer];
     }

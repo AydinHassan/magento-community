@@ -20,38 +20,24 @@
  *
  * @category    Tests
  * @package     Tests_Functional
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
 namespace Mage\Catalog\Test\Fixture\CatalogAttributeSet;
 
+use Magento\Mtf\Fixture\DataSource;
 use Magento\Mtf\Fixture\FixtureFactory;
-use Magento\Mtf\Fixture\FixtureInterface;
 use Mage\Catalog\Test\Fixture\CatalogProductAttribute;
 
 /**
  * Preset for assigned attributes.
  *  Data keys:
- *  - presets
+ *  - dataset
  *  - attributes
  */
-class AssignedAttributes implements FixtureInterface
+class AssignedAttributes extends DataSource
 {
-    /**
-     * Data set configuration settings.
-     *
-     * @var array
-     */
-    protected $params = [];
-
-    /**
-     * Names of assigned attributes.
-     *
-     * @var array
-     */
-    protected $data = [];
-
     /**
      * Assigned attributes.
      *
@@ -68,11 +54,11 @@ class AssignedAttributes implements FixtureInterface
     public function __construct(FixtureFactory $fixtureFactory, array $params, array $data = [])
     {
         $this->params = $params;
-        if (isset($data['presets']) && is_string($data['presets'])) {
-            $presets = explode(',', $data['presets']);
-            foreach ($presets as $preset) {
+        if (isset($data['dataset']) && is_string($data['dataset'])) {
+            $dataset = explode(',', $data['dataset']);
+            foreach ($dataset as $preset) {
                 /** @var CatalogProductAttribute $attribute */
-                $attribute = $fixtureFactory->createByCode('catalogProductAttribute', ['dataSet' => $preset]);
+                $attribute = $fixtureFactory->createByCode('catalogProductAttribute', ['dataset' => $preset]);
                 $attribute->persist();
 
                 $this->data[] = $attribute->getAttributeCode();
@@ -87,39 +73,6 @@ class AssignedAttributes implements FixtureInterface
         } else {
             $this->data = $data;
         }
-    }
-
-    /**
-     * Persist attribute.
-     *
-     * @return void
-     */
-    public function persist()
-    {
-        //
-    }
-
-    /**
-     * Return data set configuration settings.
-     *
-     * @return array
-     */
-    public function getDataConfig()
-    {
-        return $this->params;
-    }
-
-    /**
-     * Return prepared data set.
-     *
-     * @param string|null $key
-     * @return array
-     *
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
-     */
-    public function getData($key = null)
-    {
-        return $this->data;
     }
 
     /**

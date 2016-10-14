@@ -20,7 +20,7 @@
  *
  * @category    Tests
  * @package     Tests_Functional
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -34,7 +34,7 @@ use Mage\Catalog\Test\Fixture\CatalogAttributeSet;
  * Preset for AttributeSetId.
  *
  *  Data keys:
- *  - dataSet
+ *  - dataset
  *  - attribute_set
  */
 class AttributeSetId implements FixtureInterface
@@ -62,8 +62,8 @@ class AttributeSetId implements FixtureInterface
     public function __construct(FixtureFactory $fixtureFactory, array $params, array $data = [])
     {
         $this->params = $params;
-        if (isset($data['dataSet']) && $data['dataSet'] !== '-') {
-            $attributeSet = $fixtureFactory->createByCode('catalogAttributeSet', ['dataSet' => $data['dataSet']]);
+        if (isset($data['dataset']) && $data['dataset'] !== '-') {
+            $attributeSet = $fixtureFactory->createByCode('catalogAttributeSet', ['dataset' => $data['dataset']]);
             if (!$attributeSet->hasData('attribute_set_id')) {
                 $attributeSet->persist();
             }
@@ -72,7 +72,7 @@ class AttributeSetId implements FixtureInterface
             $attributeSet = $data['attribute_set'];
         }
         /** @var CatalogAttributeSet $attributeSet */
-        if (!isset($data['dataSet']) && !isset($data['attribute_set'])) {
+        if (!isset($data['dataset']) && !isset($data['attribute_set'])) {
             $this->data = $data;
         } else {
             $this->data = $attributeSet->getAttributeSetName();

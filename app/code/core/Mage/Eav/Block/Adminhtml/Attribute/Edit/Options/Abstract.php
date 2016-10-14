@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Eav
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -170,12 +170,11 @@ abstract class Mage_Eav_Block_Adminhtml_Attribute_Edit_Options_Abstract extends 
     public function getLabelValues()
     {
         $values = array();
-        $values[0] = $this->getAttributeObject()->getFrontend()->getLabel();
-        // it can be array and cause bug
         $frontendLabel = $this->getAttributeObject()->getFrontend()->getLabel();
         if (is_array($frontendLabel)) {
-            $frontendLabel = array_shift($frontendLabel);
+            return $frontendLabel;
         }
+        $values[0] = $frontendLabel;
         $storeLabels = $this->getAttributeObject()->getStoreLabels();
         foreach ($this->getStores() as $store) {
             if ($store->getId() != 0) {

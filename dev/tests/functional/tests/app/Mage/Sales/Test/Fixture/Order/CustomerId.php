@@ -20,7 +20,7 @@
  *
  * @category    Tests
  * @package     Tests_Functional
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -36,7 +36,7 @@ use Magento\Mtf\Fixture\FixtureInterface;
 class CustomerId implements FixtureInterface
 {
     /**
-     * Prepared dataSet data.
+     * Prepared dataset data.
      *
      * @var array
      */
@@ -62,8 +62,8 @@ class CustomerId implements FixtureInterface
             $this->data = $data['customer'];
             return;
         }
-        if (isset($data['dataSet'])) {
-            $customer = $fixtureFactory->createByCode('customer', ['dataSet' => $data['dataSet']]);
+        if (isset($data['dataset'])) {
+            $customer = $fixtureFactory->createByCode('customer', ['dataset' => $data['dataset']]);
             if ($customer->hasData('id') === false) {
                 $customer->persist();
             }

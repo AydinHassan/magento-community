@@ -21,13 +21,13 @@
  *
  * @category    Tests
  * @package     Tests_Functional
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/pages.xsd">
-  <page name="CatalogsearchAdvanced" mca="catalogsearch/advanced" module="Mage_CatalogSearch">
-      <block name="form" class="Mage\CatalogSearch\Test\Block\Advanced\Form" locator=".advanced-search" strategy="css selector"/>
-      <block name="widgetView" class="Mage\Widget\Test\Block\WidgetView" locator=".widget" strategy="css selector"/>
-  </page>
+    <page name="CatalogsearchAdvanced" mca="catalogsearch/advanced" module="Mage_CatalogSearch">
+        <block name="form" class="Mage\CatalogSearch\Test\Block\Advanced\Form" locator=".advanced-search" strategy="css selector"/>
+        <block name="widgetView" class="Mage\Widget\Test\Block\WidgetView" locator=".widget" strategy="css selector"/>
+    </page>
 </config>

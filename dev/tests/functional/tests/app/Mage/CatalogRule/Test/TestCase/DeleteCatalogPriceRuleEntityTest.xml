@@ -21,17 +21,17 @@
  *
  * @category    Tests
  * @package     Tests_Functional
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
-  <testCase name="Mage\CatalogRule\Test\TestCase\DeleteCatalogPriceRuleEntityTest">
-    <variation name="DeleteCatalogPriceRuleEntityTestVariation1" firstConstraint="Mage\CatalogRule\Test\Constraint\AssertCatalogPriceRuleSuccessDeleteMessage" method="test">
-      <data name="catalogPriceRule/dataSet" xsi:type="string">active_catalog_price_rule_with_conditions</data>
-      <constraint name="Mage\CatalogRule\Test\Constraint\AssertCatalogPriceRuleSuccessDeleteMessage" next="Mage\CatalogRule\Test\Constraint\AssertCatalogPriceRuleNotInGrid"/>
-      <constraint name="Mage\CatalogRule\Test\Constraint\AssertCatalogPriceRuleNotInGrid" next="Mage\CatalogRule\Test\Constraint\AssertCatalogPriceRuleNotInProductPage" prev="Mage\CatalogRule\Test\Constraint\AssertCatalogPriceRuleSuccessDeleteMessage"/>
-      <constraint name="Mage\CatalogRule\Test\Constraint\AssertCatalogPriceRuleNotInProductPage" prev="Mage\CatalogRule\Test\Constraint\AssertCatalogPriceRuleNotInGrid"/>
-    </variation>
-  </testCase>
+    <testCase name="Mage\CatalogRule\Test\TestCase\DeleteCatalogPriceRuleEntityTest" summary="DeleteCatalogPriceRuleEntityTest">
+        <variation name="DeleteCatalogPriceRuleEntityTestVariation1" firstConstraint="Mage\CatalogRule\Test\Constraint\AssertCatalogPriceRuleSuccessDeleteMessage" method="test">
+            <data name="catalogPriceRule/dataset" xsi:type="string">active_catalog_price_rule_with_conditions</data>
+            <constraint name="Mage\CatalogRule\Test\Constraint\AssertCatalogPriceRuleSuccessDeleteMessage" next="Mage\CatalogRule\Test\Constraint\AssertCatalogPriceRuleNotInGrid"/>
+            <constraint name="Mage\CatalogRule\Test\Constraint\AssertCatalogPriceRuleNotInGrid" next="Mage\CatalogRule\Test\Constraint\AssertCatalogPriceRuleNotInProductPage" prev="Mage\CatalogRule\Test\Constraint\AssertCatalogPriceRuleSuccessDeleteMessage"/>
+            <constraint name="Mage\CatalogRule\Test\Constraint\AssertCatalogPriceRuleNotInProductPage" prev="Mage\CatalogRule\Test\Constraint\AssertCatalogPriceRuleNotInGrid"/>
+        </variation>
+    </testCase>
 </config>

@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Reports
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -65,7 +65,16 @@ abstract class Mage_Reports_Model_Product_Index_Abstract extends Mage_Core_Model
         // Thanks to new performance tweaks it is possible to switch off visitor logging
         // This check is needed to make sure report record has either visitor id or customer id
         if ($this->hasVisitorId() || $this->hasCustomerId()) {
-            parent::save();
+            try {
+                parent::save();
+            } catch (Exception $exception) {
+                if ($this->hasCustomerId()) {
+                    $this->updateCustomerFromVisitor();
+                    parent::save();
+                } else {
+                    Mage::logException($exception);
+                }
+            }
         }
 
         return $this;
@@ -223,7 +232,16 @@ abstract class Mage_Reports_Model_Product_Index_Abstract extends Mage_Core_Model
      */
     public function registerIds($productIds)
     {
-        $this->_getResource()->registerIds($this, $productIds);
+        try {
+            $this->_getResource()->registerIds($this, $productIds);
+        } catch (Exception $exception) {
+            if ($this->hasCustomerId()) {
+                $this->updateCustomerFromVisitor();
+                $this->_getResource()->registerIds($this, $productIds);
+            } else {
+                Mage::logException($exception);
+            }
+        }
         $this->_getSession()->unsData($this->_countCacheKey);
         return $this;
     }

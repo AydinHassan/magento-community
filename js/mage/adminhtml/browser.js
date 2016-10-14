@@ -19,7 +19,7 @@
  *
  * @category    Mage
  * @package     Mage_Adminhtml
- * @copyright   Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright   Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 MediabrowserUtility = {
@@ -140,7 +140,7 @@ Mediabrowser.prototype = {
         var div = Event.findElement(event, 'DIV');
         $$('div.filecnt.selected[id!="' + div.id + '"]').each(function(e) {
             e.removeClassName('selected');
-        })
+        });
         div.toggleClassName('selected');
         if(div.hasClassName('selected')) {
             this.showFileButtons();
@@ -265,7 +265,7 @@ Mediabrowser.prototype = {
                 try {
                     this.onAjaxSuccess(transport);
                     if (transport.responseText.isJSON()) {
-                        var response = transport.responseText.evalJSON()
+                        var response = transport.responseText.evalJSON();
                         var newNode = new Ext.tree.AsyncTreeNode({
                             text: response.short_name,
                             draggable:false,
@@ -281,7 +281,7 @@ Mediabrowser.prototype = {
                     alert(e.message);
                 }
             }.bind(this)
-        })
+        });
     },
 
     deleteFolder: function() {
@@ -300,7 +300,7 @@ Mediabrowser.prototype = {
                     alert(e.message);
                 }
             }.bind(this)
-        })
+        });
     },
 
     deleteFiles: function() {
@@ -384,7 +384,7 @@ Mediabrowser.prototype = {
 
     onAjaxSuccess: function(transport) {
         if (transport.responseText.isJSON()) {
-            var response = transport.responseText.evalJSON()
+            var response = transport.responseText.evalJSON();
             if (response.error) {
                 throw response;
             } else if (response.ajaxExpired && response.ajaxRedirect) {
@@ -392,4 +392,4 @@ Mediabrowser.prototype = {
             }
         }
     }
-}
+};

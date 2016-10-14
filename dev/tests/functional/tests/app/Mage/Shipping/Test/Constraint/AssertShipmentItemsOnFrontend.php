@@ -20,7 +20,7 @@
  *
  * @category    Tests
  * @package     Tests_Functional
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -30,6 +30,7 @@ use Mage\Sales\Test\Constraint\AbstractAssertSalesEntityItemsOnFrontend;
 use Mage\Shipping\Test\Page\ShipmentView;
 use Magento\Mtf\ObjectManager;
 use Magento\Mtf\Fixture\InjectableFixture;
+use Magento\Mtf\System\Event\EventManagerInterface;
 
 /**
  * Assert that shipped items is equal to data from fixture on 'My Account' page.
@@ -52,9 +53,13 @@ class AssertShipmentItemsOnFrontend extends AbstractAssertSalesEntityItemsOnFron
      * @param ObjectManager $objectManager
      * @param ShipmentView $shipmentView
      */
-    public function __construct(ObjectManager $objectManager, ShipmentView $shipmentView)
+    public function __construct(
+        ObjectManager $objectManager,
+        EventManagerInterface $eventManager,
+        ShipmentView $shipmentView
+    )
     {
-        parent::__construct($objectManager);
+        parent::__construct($objectManager, $eventManager);
         $this->salesTypeViewPage = $shipmentView;
     }
 

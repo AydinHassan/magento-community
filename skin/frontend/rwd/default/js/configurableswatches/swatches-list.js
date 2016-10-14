@@ -19,7 +19,7 @@
  *
  * @category    design
  * @package     rwd_default
- * @copyright   Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright   Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 
@@ -43,15 +43,26 @@ var ConfigurableSwatchesList = {
         var that = this;
         var $swatch = $j(swatch);
         var productId;
+        $j($swatch).hover(function() {
+            /**
+             *
+             * - Preview the stock status
+             **/
+            var swatchUl = $swatch.parent();
+            swatchUl.find('.x').each(function(){
+                $j(this).show();
+                $j(this).closest('li').addClass('not-available');
+            });
+        });
         if (productId = $swatch.data('product-id')) {
             if (typeof(this.swatchesByProduct[productId]) == 'undefined') {
                 this.swatchesByProduct[productId] = [];
             }
             this.swatchesByProduct[productId].push($swatch);
 
-            $swatch.find('a').on('click', function() {
+            $swatch.find('a').on('click', function(e) {
+                e.preventDefault();
                 that.handleSwatchSelect($swatch);
-                return false;
             });
         }
     },
@@ -70,7 +81,7 @@ var ConfigurableSwatchesList = {
 
         $swatch.addClass('selected');
     }
-}
+};
 
 $j(document).on('configurable-media-images-init', function(){
     ConfigurableSwatchesList.init();

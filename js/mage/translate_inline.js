@@ -19,7 +19,7 @@
  *
  * @category    Mage
  * @package     js
- * @copyright   Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright   Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 
@@ -35,15 +35,15 @@ TranslateInline.prototype = {
             $$('*[data-translate]').each(this.initializeElement.bind(this));
             var scope = this;
             Ajax.Responders.register({ onComplete: function() {
-                window.setTimeout(scope.reinitElements.bind(scope), 50)
+                window.setTimeout(scope.reinitElements.bind(scope), 50);
             }
             });
-            var ElementNode = (typeof HTMLElement != 'undefined' ? HTMLElement : Element)
+            var ElementNode = (typeof HTMLElement != 'undefined' ? HTMLElement : Element);
             var ElementUpdate = ElementNode.prototype.update;
             ElementNode.prototype.update = function() {
                 ElementUpdate.apply(this, arguments);
                 $(this).select('*[data-translate]').each(scope.initializeElement.bind(scope));
-            }
+            };
         }
         this.trigEl = $(trigEl);
         this.trigEl.observe('click', this.formShow.bind(this));
@@ -222,4 +222,4 @@ TranslateInline.prototype = {
         escaped = escaped.replace(/"/g, '&quot;');
         return escaped;
     }
-}
+};

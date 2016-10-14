@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_ImportExport
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -230,18 +230,34 @@ class Mage_ImportExport_Model_Import_Entity_Product_Type_Configurable
                     ->getNode('global/catalog/product/type/configurable/allow_product_types')->children() as $type) {
                 $allowProductTypes[] = $type->getName();
             }
-            foreach (Mage::getResourceModel('catalog/product_collection')
+            /** @var Mage_Catalog_Model_Resource_Product_Collection $collection */
+            $collection = Mage::getResourceModel('catalog/product_collection')
                         ->addFieldToFilter('type_id', $allowProductTypes)
-                        ->addAttributeToSelect(array_keys($this->_superAttributes)) as $product) {
-                $attrSetName = $attrSetIdToName[$product->getAttributeSetId()];
+                        ->addAttributeToSelect(array_keys($this->_superAttributes));
 
-                $data = array_intersect_key(
-                    $product->getData(),
-                    $this->_superAttributes
-                );
-                foreach ($data as $attrCode => $value) {
-                    $attrId = $this->_superAttributes[$attrCode]['id'];
-                    $this->_skuSuperAttributeValues[$attrSetName][$product->getId()][$attrId] = $value;
+            $collectionSize = $collection->getSize();
+            if ($collectionSize) {
+                $configPageSize = Mage::helper('importexport')->getImportConfigurablePageSize();
+                $pageSize = ($configPageSize > 0) ? $configPageSize : $collectionSize;
+                $page = 0;
+                $collection->setPageSize($pageSize);
+                while ($pageSize * $page < $collectionSize) {
+                    $page++;
+                    $collection->setCurPage($page);
+
+                    foreach ($collection as $product) {
+                        $attrSetName = $attrSetIdToName[$product->getAttributeSetId()];
+
+                        $data = array_intersect_key(
+                            $product->getData(),
+                            $this->_superAttributes
+                        );
+                        foreach ($data as $attrCode => $value) {
+                            $attrId = $this->_superAttributes[$attrCode]['id'];
+                            $this->_skuSuperAttributeValues[$attrSetName][$product->getId()][$attrId] = $value;
+                        }
+                    }
+                    $collection->clear();
                 }
             }
         }

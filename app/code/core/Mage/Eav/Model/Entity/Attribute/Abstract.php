@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Eav
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -383,7 +383,10 @@ abstract class Mage_Eav_Model_Entity_Attribute_Abstract extends Mage_Core_Model_
             $source = Mage::getModel($this->getSourceModel());
             if (!$source) {
                 throw Mage::exception('Mage_Eav',
-                    Mage::helper('eav')->__('Source model "%s" not found for attribute "%s"',$this->getSourceModel(), $this->getAttributeCode())
+                    Mage::helper('eav')->__('Source model "%s" not found for attribute "%s"',
+                        $this->getSourceModel(),
+                        $this->getAttributeCode()
+                    )
                 );
             }
             $this->_source = $source->setAttribute($this);
@@ -628,8 +631,14 @@ abstract class Mage_Eav_Model_Entity_Attribute_Abstract extends Mage_Core_Model_
                     break;
                 }
                 $prop = $describe[$this->getAttributeCode()];
+                $type = $prop['DATA_TYPE'];
+                if (isset($prop['PRECISION']) && isset($prop['SCALE'])) {
+                    $type .= "({$prop['PRECISION']},{$prop['SCALE']})";
+                } else {
+                    $type .= (isset($prop['LENGTH']) && $prop['LENGTH']) ? "({$prop['LENGTH']})" : "";
+                }
                 $columns[$this->getAttributeCode()] = array(
-                    'type'      => $prop['DATA_TYPE'] . ($prop['LENGTH'] ? "({$prop['LENGTH']})" : ""),
+                    'type'      => $type,
                     'unsigned'  => $prop['UNSIGNED'] ? true: false,
                     'is_null'   => $prop['NULLABLE'],
                     'default'   => $prop['DEFAULT'],

@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Catalog
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -359,7 +359,7 @@ class Mage_Catalog_Model_Resource_Eav_Attribute extends Mage_Eav_Model_Entity_At
 
         if ($backendType == 'int' && $frontendInput == 'select') {
             return true;
-        } else if ($backendType == 'varchar' && $frontendInput == 'multiselect') {
+        } else if (($backendType == 'varchar' || $backendType == 'text') && $frontendInput == 'multiselect') {
             return true;
         } else if ($backendType == 'decimal') {
             return true;

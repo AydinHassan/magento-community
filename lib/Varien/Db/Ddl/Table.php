@@ -20,7 +20,7 @@
  *
  * @category    Varien
  * @package     Varien_Db
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -342,8 +342,9 @@ class Varien_Db_Ddl_Table
             case self::TYPE_DECIMAL:
             case self::TYPE_NUMERIC:
                 $match      = array();
-                $scale      = 10;
-                $precision  = 0;
+                //For decimal(M,D), M must be >= D
+                $precision  = 10;
+                $scale      = 0;
                 // parse size value
                 if (is_array($size)) {
                     if (count($size) == 2) {

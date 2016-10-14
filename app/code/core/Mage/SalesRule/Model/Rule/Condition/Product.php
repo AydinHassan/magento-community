@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_SalesRule
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -57,7 +57,7 @@ class Mage_SalesRule_Model_Rule_Condition_Product extends Mage_Rule_Model_Condit
     public function validate(Varien_Object $object)
     {
         /** @var Mage_Catalog_Model_Product $product */
-        $product = $object->getProduct();
+        $product = ($object instanceof Mage_Catalog_Model_Product) ? $object : $object->getProduct();
         if (!($product instanceof Mage_Catalog_Model_Product)) {
             $product = Mage::getModel('catalog/product')->load($object->getProductId());
         }

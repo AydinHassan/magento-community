@@ -20,7 +20,7 @@
  *
  * @category    Tests
  * @package     Tests_Functional
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -50,7 +50,9 @@ class Register extends Form
      */
     public function registerCustomer(FixtureInterface $fixture)
     {
-        $this->fill($fixture);
+        $mapping = $this->dataMapping($fixture->getData());
+        unset($mapping['id']);
+        $this->_fill($mapping);
         $this->_rootElement->find($this->submit, Locator::SELECTOR_CSS)->click();
     }
 }

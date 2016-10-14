@@ -20,7 +20,7 @@
  *
  * @category    Tests
  * @package     Tests_Functional
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -30,6 +30,7 @@ use Magento\Mtf\ObjectManager;
 use Mage\Adminhtml\Test\Block\Widget\Grid;
 use Mage\Sales\Test\Fixture\Order;
 use Mage\Sales\Test\Page\Adminhtml\SalesCreditMemo;
+use Magento\Mtf\System\Event\EventManagerInterface;
 
 /**
  * Assert that credit memo with corresponding order ID is present in the credit memo grid with corresponding amount.
@@ -69,11 +70,16 @@ class AssertCreditMemoInCreditMemosGrid extends AbstractAssertSalesEntityInSales
     /**
      * @constructor
      * @param ObjectManager $objectManager
+     * @param EventManagerInterface $eventManager
      * @param SalesCreditMemo $salesCreditMemo
      */
-    public function __construct(ObjectManager $objectManager, SalesCreditMemo $salesCreditMemo)
+    public function __construct(
+        ObjectManager $objectManager,
+        EventManagerInterface $eventManager,
+        SalesCreditMemo $salesCreditMemo
+    )
     {
-        parent::__construct($objectManager);
+        parent::__construct($objectManager, $eventManager);
         $this->salesEntityIndexPage = $salesCreditMemo;
     }
 

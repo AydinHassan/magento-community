@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -74,8 +74,11 @@ if (in_array($apiAlias, Mage_Api2_Model_Server::getApiTypes())) {
 } else {
     /* @var $server Mage_Api_Model_Server */
     $server = Mage::getSingleton('api/server');
-    $adapterCode = $server->getAdapterCodeByAlias($apiAlias);
-
+    if (!$apiAlias) {
+        $adapterCode = 'default';
+    } else {
+        $adapterCode = $server->getAdapterCodeByAlias($apiAlias);
+    }
     // if no adapters found in aliases - find it by default, by code
     if (null === $adapterCode) {
         $adapterCode = $apiAlias;

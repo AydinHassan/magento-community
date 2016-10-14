@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_CatalogInventory
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -523,6 +523,27 @@ class Mage_CatalogInventory_Model_Stock_Item extends Mage_Core_Model_Abstract
 
         if (!is_numeric($qty)) {
             $qty = Mage::app()->getLocale()->getNumber($qty);
+        }
+
+        /**
+         * Check if child product assigned to parent
+         */
+        $parentItem = $this->getParentItem();
+        if ($this->getIsChildItem() && !empty($parentItem)) {
+            $typeInstance = $parentItem->getProduct()->getTypeInstance(true);
+            $requiredChildrenIds = $typeInstance->getChildrenIds($parentItem->getProductId(), true);
+            $childrenIds = array();
+            foreach ($requiredChildrenIds as $groupedChildrenIds) {
+                $childrenIds = array_merge($childrenIds, $groupedChildrenIds);
+            }
+            if (!in_array($this->getProductId(), $childrenIds)) {
+                $result->setHasError(true)
+                    ->setMessage(Mage::helper('cataloginventory')
+                        ->__('This product with current option is not available'))
+                    ->setQuoteMessage(Mage::helper('cataloginventory')->__('Some of the products are not available'))
+                    ->setQuoteMessageIndex('stock');
+                return $result;
+            }
         }
 
         /**

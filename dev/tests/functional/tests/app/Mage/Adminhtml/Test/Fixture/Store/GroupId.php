@@ -20,7 +20,7 @@
  *
  * @category    Tests
  * @package     Tests_Functional
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -36,7 +36,7 @@ use Mage\Adminhtml\Test\Fixture\StoreGroup;
 class GroupId implements FixtureInterface
 {
     /**
-     * Prepared dataSet data.
+     * Prepared dataset data.
      *
      * @var array
      */
@@ -68,8 +68,8 @@ class GroupId implements FixtureInterface
         if (isset($data['store_group'])) {
             $this->storeGroup = $data['store_group'];
             $this->data = $data['store_group']->getWebsiteId() . "/" . $data['store_group']->getName();
-        } elseif (isset($data['dataSet'])) {
-            $storeGroup = $fixtureFactory->createByCode('storeGroup', ['dataSet' => $data['dataSet']]);
+        } elseif (isset($data['dataset'])) {
+            $storeGroup = $fixtureFactory->createByCode('storeGroup', ['dataset' => $data['dataset']]);
             /** @var StoreGroup $storeGroup */
             if (!$storeGroup->getGroupId()) {
                 $storeGroup->persist();

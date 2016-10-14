@@ -20,7 +20,7 @@
  *
  * @category    Tests
  * @package     Tests_Functional
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -36,7 +36,7 @@ use Magento\Mtf\TestStep\TestStepInterface;
 class CreateProductStep implements TestStepInterface
 {
     /**
-     * Product fixture from dataSet.
+     * Product fixture from dataset.
      *
      * @var string
      */
@@ -76,11 +76,11 @@ class CreateProductStep implements TestStepInterface
      */
     public function run()
     {
-        list($fixtureClass, $dataSet) = explode('::', $this->product);
+        list($fixtureClass, $dataset) = explode('::', $this->product);
         /** @var FixtureInterface $product */
         $product = $this->fixtureFactory->createByCode(
             trim($fixtureClass),
-            ['dataSet' => trim($dataSet), 'data' => $this->data]
+            ['dataset' => trim($dataset), 'data' => $this->data]
         );
         if ($product->hasData('id') === false) {
             $product->persist();

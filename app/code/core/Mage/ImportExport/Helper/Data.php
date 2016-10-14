@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_ImportExport
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -36,8 +36,9 @@ class Mage_ImportExport_Helper_Data extends Mage_Core_Helper_Data
     /**
      * XML path for config data
      */
-    const XML_PATH_EXPORT_LOCAL_VALID_PATH = 'general/file/importexport_local_valid_paths';
-    const XML_PATH_BUNCH_SIZE = 'general/file/bunch_size';
+    const XML_PATH_EXPORT_LOCAL_VALID_PATH       = 'general/file/importexport_local_valid_paths';
+    const XML_PATH_BUNCH_SIZE                    = 'general/file/bunch_size';
+    const XML_PATH_IMPORT_CONFIGURABLE_PAGE_SIZE = 'system/import_csv/configurable_page_size';
 
     /**
      * Maximum size of uploaded files.
@@ -68,5 +69,15 @@ class Mage_ImportExport_Helper_Data extends Mage_Core_Helper_Data
     public function getBunchSize()
     {
         return (int)Mage::getStoreConfig(self::XML_PATH_BUNCH_SIZE);
+    }
+
+    /**
+     * Get page size for import configurable products
+     *
+     * @return int
+     */
+    public function getImportConfigurablePageSize()
+    {
+        return (int)Mage::getStoreConfig(self::XML_PATH_IMPORT_CONFIGURABLE_PAGE_SIZE);
     }
 }

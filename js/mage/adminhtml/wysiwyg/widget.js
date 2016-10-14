@@ -19,7 +19,7 @@
  *
  * @category    Mage
  * @package     Mage_Adminhtml
- * @copyright   Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright   Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 
@@ -31,7 +31,7 @@ var widgetTools = {
 
     onAjaxSuccess: function(transport) {
         if (transport.responseText.isJSON()) {
-            var response = transport.responseText.evalJSON()
+            var response = transport.responseText.evalJSON();
             if (response.error) {
                 throw response;
             } else if (response.ajaxExpired && response.ajaxRedirect) {
@@ -74,7 +74,7 @@ var widgetTools = {
             window.close();
         }
     }
-}
+};
 
 var WysiwygWidget = {};
 WysiwygWidget.Widget = Class.create();
@@ -272,7 +272,7 @@ WysiwygWidget.Widget.prototype = {
     getWysiwygNode: function() {
         return tinyMCE.activeEditor.selection.getNode();
     }
-}
+};
 
 WysiwygWidget.chooser = Class.create();
 WysiwygWidget.chooser.prototype = {
@@ -404,4 +404,4 @@ WysiwygWidget.chooser.prototype = {
     setElementLabel: function(value) {
         this.getElementLabel().innerHTML = value;
     }
-}
+};

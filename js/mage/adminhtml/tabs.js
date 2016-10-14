@@ -19,7 +19,7 @@
  *
  * @category    Mage
  * @package     Mage_Adminhtml
- * @copyright   Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright   Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 var varienTabs = new Class.create();
@@ -49,7 +49,7 @@ varienTabs.prototype = {
                     this.tabs[tab].container = this;
                     this.tabs[tab].show = function(){
                         this.container.showTabContent(this);
-                    }
+                    };
                     if(varienGlobalEvents){
                         varienGlobalEvents.fireEvent('moveTab', {tab:this.tabs[tab]});
                     }
@@ -88,7 +88,7 @@ varienTabs.prototype = {
                     this.tabs[tab].container = this;
                     this.tabs[tab].show = function(){
                         this.container.showTabContent(this);
-                    }
+                    };
                     if(varienGlobalEvents){
                         varienGlobalEvents.fireEvent('moveTab', {tab:this.tabs[tab]});
                     }
@@ -176,7 +176,7 @@ varienTabs.prototype = {
                     onSuccess: function(transport) {
                         try {
                             if (transport.responseText.isJSON()) {
-                                var response = transport.responseText.evalJSON()
+                                var response = transport.responseText.evalJSON();
                                 if (response.error) {
                                     alert(response.message);
                                 }
@@ -185,12 +185,12 @@ varienTabs.prototype = {
                                 }
                             } else {
                                 $(tabContentElement.id).update(transport.responseText);
-                                this.showTabContentImmediately(tab)
+                                this.showTabContentImmediately(tab);
                             }
                         }
                         catch (e) {
                             $(tabContentElement.id).update(transport.responseText);
-                            this.showTabContentImmediately(tab)
+                            this.showTabContentImmediately(tab);
                         }
                     }.bind(this)
                 });
@@ -210,7 +210,7 @@ varienTabs.prototype = {
                 onSuccess: function(transport) {
                     try {
                         if (transport.responseText.isJSON()) {
-                            var response = transport.responseText.evalJSON()
+                            var response = transport.responseText.evalJSON();
                             if (response.error) {
                                 alert(response.message);
                             }
@@ -245,4 +245,4 @@ varienTabs.prototype = {
             varienGlobalEvents.fireEvent('hideTab', {tab:tab});
         }
     }
-}
+};

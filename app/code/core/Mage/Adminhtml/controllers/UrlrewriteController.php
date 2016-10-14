@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Adminhtml
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -135,7 +135,7 @@ class Mage_Adminhtml_UrlrewriteController extends Mage_Adminhtml_Controller_Acti
                     ->setTargetPath($this->getRequest()->getParam('target_path'))
                     ->setOptions($this->getRequest()->getParam('options'))
                     ->setDescription($this->getRequest()->getParam('description'))
-                    ->setRequestPath($requestPath);
+                    ->setRequestPath(strtolower($requestPath));
 
                 if (!$model->getId()) {
                     $model->setIsSystem(0);

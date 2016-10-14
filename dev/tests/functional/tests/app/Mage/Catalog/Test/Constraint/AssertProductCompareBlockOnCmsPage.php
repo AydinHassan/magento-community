@@ -20,7 +20,7 @@
  *
  * @category    Tests
  * @package     Tests_Functional
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -53,7 +53,7 @@ class AssertProductCompareBlockOnCmsPage extends AbstractConstraint
      */
     public function processAssert(CmsIndex $cmsIndex, FixtureFactory $fixtureFactory, Browser $browser, array $products)
     {
-        $newCmsPage = $fixtureFactory->createByCode('cmsPage', ['dataSet' => '3_column_template']);
+        $newCmsPage = $fixtureFactory->createByCode('cmsPage', ['dataset' => '3_column_template']);
         $newCmsPage->persist();
         $browser->open($_ENV['app_frontend_url'] . $newCmsPage->getIdentifier());
         foreach ($products as &$product) {

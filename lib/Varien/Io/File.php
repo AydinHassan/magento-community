@@ -20,7 +20,7 @@
  *
  * @category    Varien
  * @package     Varien_Io
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -127,7 +127,7 @@ class Varien_Io_File extends Varien_Io_Abstract
     {
         $writeableMode = preg_match('#^[wax]#i', $mode);
         if ($writeableMode && !is_writeable($this->_cwd)) {
-            throw new Exception('Permission denied for write to ' . $this->_cwd);
+            throw new Exception('Permission denied for write to ' . $this->getFilteredPath($this->_cwd));
         }
 
         if (!ini_get('auto_detect_line_endings')) {
@@ -138,7 +138,7 @@ class Varien_Io_File extends Varien_Io_Abstract
         $this->_streamHandler = @fopen($fileName, $mode);
         @chdir($this->_iwd);
         if ($this->_streamHandler === false) {
-            throw new Exception('Error write to file ' . $fileName);
+            throw new Exception('Error write to file ' . $this->getFilteredPath($fileName));
         }
 
         $this->_streamFileName = $fileName;
@@ -231,16 +231,6 @@ class Varien_Io_File extends Varien_Io_Abstract
     {
         if (!$this->_streamHandler) {
             return false;
-        }
-
-        /**
-         * Security enchancement for CSV data processing by Excel-like applications.
-         * @see https://bugzilla.mozilla.org/show_bug.cgi?id=1054702
-         */
-        foreach ($row as $key => $value) {
-            if (substr($value, 0, 1) === '=') {
-                $row[$key] = ' ' . $value;
-            }
         }
 
         return @fputcsv($this->_streamHandler, $row, $delimiter, $enclosure);
@@ -517,12 +507,12 @@ class Varien_Io_File extends Varien_Io_Abstract
         @chdir($this->_cwd);
          if (file_exists($filename)) {
             if (!is_writeable($filename)) {
-                $error = "File '{$filename}' isn't writeable";
+                $error = "File '{$this->getFilteredPath($filename)}' isn't writeable";
             }
         } else {
             $folder = dirname($filename);
             if (!is_writable($folder)) {
-                $error = "Folder '{$folder}' isn't writeable";
+                $error = "Folder '{$this->getFilteredPath($folder)}' isn't writeable";
             }
         }
         @chdir($this->_iwd);
@@ -625,7 +615,7 @@ class Varien_Io_File extends Varien_Io_Abstract
             $this->checkAndCreateFolder(dirname($folder), $mode);
         }
         if (!is_dir($folder) && !$this->mkdir($folder, $mode)) {
-            throw new Exception("Unable to create directory '{$folder}'. Access forbidden.");
+            throw new Exception("Unable to create directory '{$this->getFilteredPath($folder)}'. Access forbidden.");
         }
         return true;
     }

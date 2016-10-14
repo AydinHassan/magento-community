@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Sales
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -130,7 +130,10 @@ abstract class Mage_Sales_Model_Quote_Item_Abstract extends Mage_Core_Model_Abst
     {
         if ($parentItem) {
             $this->_parentItem = $parentItem;
-            $parentItem->addChild($this);
+            // Prevent duplication of children in those are already set
+            if (!in_array($this, $parentItem->getChildren())) {
+                $parentItem->addChild($this);
+            }
         }
         return $this;
     }

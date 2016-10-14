@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -44,7 +44,7 @@ Mage::app('admin')->setUseSessionInUrl(false);
 
 umask(0);
 
-$disabledFuncs = explode(',', ini_get('disable_functions'));
+$disabledFuncs = array_map('trim', explode(',', strtolower(ini_get('disable_functions'))));
 $isShellDisabled = is_array($disabledFuncs) ? in_array('shell_exec', $disabledFuncs) : true;
 $isShellDisabled = (stripos(PHP_OS, 'win') === false) ? $isShellDisabled : true;
 

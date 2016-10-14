@@ -20,7 +20,7 @@
  *
  * @category    Tests
  * @package     Tests_Functional
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -29,6 +29,7 @@ namespace Mage\Sales\Test\Constraint;
 use Mage\Sales\Test\Page\CreditMemoView;
 use Magento\Mtf\ObjectManager;
 use Magento\Mtf\Fixture\InjectableFixture;
+use Magento\Mtf\System\Event\EventManagerInterface;
 
 /**
  * Assert that credit memo items is equal to data from fixture on 'My Account' page.
@@ -61,11 +62,16 @@ class AssertCreditMemoItemsOnFrontend extends AbstractAssertSalesEntityItemsOnFr
     /**
      * @constructor
      * @param ObjectManager $objectManager
+     * @param EventManagerInterface $eventManager
      * @param CreditMemoView $creditMemoView
      */
-    public function __construct(ObjectManager $objectManager, CreditMemoView $creditMemoView)
+    public function __construct(
+        ObjectManager $objectManager,
+        EventManagerInterface $eventManager,
+        CreditMemoView $creditMemoView
+    )
     {
-        parent::__construct($objectManager);
+        parent::__construct($objectManager, $eventManager);
         $this->salesTypeViewPage = $creditMemoView;
     }
 

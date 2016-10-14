@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Cms
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -222,7 +222,8 @@ class Mage_Cms_Helper_Wysiwyg_Images extends Mage_Core_Helper_Abstract
             }
             $io = new Varien_Io_File();
             if (!$io->isWriteable($currentPath) && !$io->mkdir($currentPath)) {
-                $message = Mage::helper('cms')->__('The directory %s is not writable by server.',$currentPath);
+                $message = Mage::helper('cms')->__('The directory %s is not writable by server.',
+                    $io->getFilteredPath($currentPath));
                 Mage::throwException($message);
             }
             $this->_currentPath = $currentPath;

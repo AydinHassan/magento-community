@@ -20,13 +20,13 @@
  *
  * @category    Tests
  * @package     Tests_Functional
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
 namespace Mage\Paypal\Test\Block\Form;
 
-use Mage\Payment\Test\Fixture\Cc;
+use Mage\Payment\Test\Fixture\ValidationPassword;
 use Magento\Mtf\Block\Form;
 use Magento\Mtf\Client\ElementInterface;
 use Magento\Mtf\Client\Locator;
@@ -77,15 +77,14 @@ class Centinel extends Form
     /**
      * Fill credit card.
      *
-     * @param Cc $creditCard
-     * @return void
+     * @param ValidationPassword $pass
      */
-    public function fillCc(Cc $creditCard)
+    public function fillPass(ValidationPassword $pass)
     {
         $this->waitForElementVisible($this->centinel);
         $this->browser->switchToFrame(new Locator($this->centinel));
         $element = $this->getRootElement();
-        parent::fill($creditCard, $element);
+        parent::fill($pass, $element);
     }
 
     /**

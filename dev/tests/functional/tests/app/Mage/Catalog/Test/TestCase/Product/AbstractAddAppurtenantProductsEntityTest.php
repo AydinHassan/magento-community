@@ -20,7 +20,7 @@
  *
  * @category    Tests
  * @package     Tests_Functional
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -91,7 +91,7 @@ abstract class AbstractAddAppurtenantProductsEntityTest extends Injectable
      */
     protected function getProductByData($productData, array $relatedProductsData)
     {
-        list($fixtureName, $dataSet) = explode('::', $productData);
+        list($fixtureName, $dataset) = explode('::', $productData);
         $relatedProductsPresets = [];
         foreach ($relatedProductsData as $type => $presets) {
             $relatedProductsPresets[$type]['presets'] = $presets;
@@ -100,7 +100,7 @@ abstract class AbstractAddAppurtenantProductsEntityTest extends Injectable
         return $this->fixtureFactory->createByCode(
             $fixtureName,
             [
-                'dataSet' => $dataSet,
+                'dataset' => $dataset,
                 'data' => $relatedProductsPresets
             ]
         );

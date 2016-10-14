@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Core
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -212,7 +212,7 @@ class Mage_Core_Block_Template extends Mage_Core_Block_Abstract
 
         // EXTR_SKIP protects from overriding
         // already defined variables
-        extract ($this->_viewVars, EXTR_SKIP);
+        extract($this->_viewVars, EXTR_SKIP);
         $do = $this->getDirectOutput();
 
         if (!$do) {

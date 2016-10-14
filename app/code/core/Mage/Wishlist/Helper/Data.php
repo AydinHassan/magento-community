@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Wishlist
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -274,7 +274,10 @@ class Mage_Wishlist_Helper_Data extends Mage_Core_Helper_Abstract
     public function getRemoveUrl($item)
     {
         return $this->_getUrl('wishlist/index/remove',
-            array('item' => $item->getWishlistItemId())
+            array(
+                'item' => $item->getWishlistItemId(),
+                Mage_Core_Model_Url::FORM_KEY => $this->_getSingletonModel('core/session')->getFormKey()
+            )
         );
     }
 

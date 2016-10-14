@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Adminhtml
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -36,6 +36,21 @@ class Mage_Adminhtml_Catalog_Product_AttributeController extends Mage_Adminhtml_
 {
 
     protected $_entityTypeId;
+
+    /**
+     * List of tags from setting
+     */
+    const XML_PATH_ALLOWED_TAGS = 'system/catalog/frontend/allowed_html_tags_list';
+
+    /**
+     * Get list of allowed text formatted as array
+     *
+     * @return array
+     */
+    protected function _getAllowedTags()
+    {
+        return explode(',', Mage::getStoreConfig(self::XML_PATH_ALLOWED_TAGS));
+    }
 
     public function preDispatch()
     {
@@ -164,7 +179,17 @@ class Mage_Adminhtml_Catalog_Product_AttributeController extends Mage_Adminhtml_
 
             if (!empty($data['option']) && !empty($data['option']['value']) && is_array($data['option']['value'])) {
                 foreach ($data['option']['value'] as $key => $values) {
-                    $data['option']['value'][$key] = array_map(array($helperCatalog, 'stripTags'), $values);
+                    $isHtmlAllowedOnFrontend = isset($data['is_html_allowed_on_front'])
+                        && $data['is_html_allowed_on_front'];
+                    $data['option']['value'][$key] = array_map(
+                        array($helperCatalog, 'stripTags'),
+                        $values,
+                        array_fill(
+                            0,
+                            count($values),
+                            $isHtmlAllowedOnFrontend ? sprintf('<%s>', implode('><', $this->_getAllowedTags())): null
+                        )
+                    );
                 }
             }
         }

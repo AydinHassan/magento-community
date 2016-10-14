@@ -19,7 +19,7 @@
  *
  * @category    Mage
  * @package     Mage_Adminhtml
- * @copyright   Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright   Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 
@@ -430,13 +430,13 @@ ProductConfigure.prototype = {
                 var states = new Array;
                 var selects = this.blockForm.getElementsByTagName("select");
                 for(var i=0; i<selects.length; i++){
-                    states[i] = selects[i].style.visibility
+                    states[i] = selects[i].style.visibility;
                 }
             }
             toggleSelectsUnderBlock(this.blockMask, flag);
             if (this.blockForm) {
                 for(i=0; i<selects.length; i++){
-                    selects[i].style.visibility = states[i]
+                    selects[i].style.visibility = states[i];
                 }
             }
         }
@@ -584,7 +584,7 @@ ProductConfigure.prototype = {
             var pattern         = null;
             var patternFlat     = null;
             var replacement     = null;
-            var replacementFlat = null
+            var replacementFlat = null;
             var scopeArr        = blockItem.id.match(/.*\[\w+\]\[([^\]]+)\]$/);
             var itemId          = scopeArr[1];
             if (method == 'current_confirmed_to_form') {

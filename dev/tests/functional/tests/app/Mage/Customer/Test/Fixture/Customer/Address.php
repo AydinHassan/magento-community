@@ -20,35 +20,21 @@
  *
  * @category    Tests
  * @package     Tests_Functional
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
 namespace Mage\Customer\Test\Fixture\Customer;
 
+use Magento\Mtf\Fixture\DataSource;
 use Magento\Mtf\Fixture\FixtureFactory;
-use Magento\Mtf\Fixture\FixtureInterface;
 use Mage\Customer\Test\Fixture\Address as AddressFixture;
 
 /**
  * Addresses source for customer fixture
  */
-class Address implements FixtureInterface
+class Address extends DataSource
 {
-    /**
-     * Source data.
-     *
-     * @var array
-     */
-    protected $data = [];
-
-    /**
-     * Source parameters.
-     *
-     * @var array
-     */
-    protected $params;
-
     /**
      * Customer addresses fixture.
      *
@@ -66,52 +52,21 @@ class Address implements FixtureInterface
     {
         $this->params = $params;
 
-        if (isset($data['presets'])) {
-            $data['presets'] = explode(',', $data['presets']);
-            foreach ($data['presets'] as $value) {
+        if (isset($data['dataset'])) {
+            $data['dataset'] = explode(',', $data['dataset']);
+            foreach ($data['dataset'] as $value) {
                 /** @var AddressFixture $fixture */
-                $addresses = $fixtureFactory->createByCode('address', ['dataSet' => $value]);
+                $addresses = $fixtureFactory->createByCode('address', ['dataset' => $value]);
                 $this->data[] = $addresses->getData();
                 $this->addressesFixture[] = $addresses;
             }
-        } elseif (empty($data['presets']) && !empty($data['addresses'])) {
+        } elseif (empty($data['dataset']) && !empty($data['addresses'])) {
             foreach ($data['addresses'] as $addresses) {
                 /** @var AddressFixture $addresses */
                 $this->data[] = $addresses->getData();
                 $this->addressesFixture[] = $addresses;
             }
         }
-    }
-
-    /**
-     * Persists prepared data into application.
-     *
-     * @return void
-     */
-    public function persist()
-    {
-        //
-    }
-
-    /**
-     * Return prepared data set.
-     *
-     * @param int|null $key [optional]
-     * @return array
-     */
-    public function getData($key = null)
-    {
-        return isset($this->data[$key]) ? $this->data[$key] : $this->data;
-    }
-
-    /**
-     * Return data set configuration settings.
-     *
-     * @return array
-     */
-    public function getDataConfig()
-    {
-        return $this->params;
     }
 
     /**

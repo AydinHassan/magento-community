@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Core
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -373,5 +373,40 @@ if ( !function_exists('sys_get_temp_dir') ) {
                 return FALSE;
             }
         }
+    }
+}
+
+if (!function_exists('hash_equals')) {
+    /**
+     * Compares two strings using the same time whether they're equal or not.
+     * A difference in length will leak
+     *
+     * @param string $known_string
+     * @param string $user_string
+     * @return boolean Returns true when the two strings are equal, false otherwise.
+     */
+    function hash_equals($known_string, $user_string)
+    {
+        $result = 0;
+
+        if (!is_string($known_string)) {
+            trigger_error("hash_equals(): Expected known_string to be a string", E_USER_WARNING);
+            return false;
+        }
+
+        if (!is_string($user_string)) {
+            trigger_error("hash_equals(): Expected user_string to be a string", E_USER_WARNING);
+            return false;
+        }
+
+        if (strlen($known_string) != strlen($user_string)) {
+            return false;
+        }
+
+        for ($i = 0; $i < strlen($known_string); $i++) {
+            $result |= (ord($known_string[$i]) ^ ord($user_string[$i]));
+        }
+
+        return 0 === $result;
     }
 }

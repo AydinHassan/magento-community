@@ -20,7 +20,7 @@
  *
  * @category    Tests
  * @package     Tests_Functional
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -37,7 +37,7 @@ use Mage\Customer\Test\Fixture\Customer;
  *
  * Steps:
  * 1. Navigate to front-end.
- * 2. Login as customer according to dataSet.
+ * 2. Login as customer according to dataset.
  * 3. Open product page of test product(s) and click "Add to Compare" button.
  * 4. Assert success message is present on page.
  * 5. Navigate to compare page.

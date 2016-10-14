@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Adminhtml
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -203,14 +203,15 @@ class Mage_Adminhtml_Block_Catalog_Product_Edit_Tab_Related extends Mage_Adminht
         ));
 
         $this->addColumn('position', array(
-            'header'            => Mage::helper('catalog')->__('Position'),
-            'name'              => 'position',
-            'type'              => 'number',
-            'validate_class'    => 'validate-number',
-            'index'             => 'position',
-            'width'             => 60,
-            'editable'          => !$this->_getProduct()->getRelatedReadonly(),
-            'edit_only'         => !$this->_getProduct()->getId()
+            'header'                    => Mage::helper('catalog')->__('Position'),
+            'name'                      => 'position',
+            'type'                      => 'number',
+            'validate_class'            => 'validate-number',
+            'index'                     => 'position',
+            'width'                     => 60,
+            'editable'                  => !$this->_getProduct()->getRelatedReadonly(),
+            'edit_only'                 => !$this->_getProduct()->getId(),
+            'filter_condition_callback' => array($this, '_addLinkModelFilterCallback')
         ));
 
         return parent::_prepareColumns();

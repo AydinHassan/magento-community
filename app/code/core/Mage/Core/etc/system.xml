@@ -21,7 +21,7 @@
  *
  * @category    Mage
  * @package     Mage_Core
- * @copyright   Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright   Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 -->
@@ -1068,7 +1068,7 @@
                             <show_in_store>0</show_in_store>
                         </forgot_email_identity>
                         <password_reset_link_expiration_period translate="label comment">
-                            <label>Recovery Link Expiration Period (days)</label>
+                            <label>Recovery Link Expiration Period (hours)</label>
                             <comment>Please enter a number 1 or greater in this field.</comment>
                             <frontend_type>text</frontend_type>
                             <validate>required-entry validate-digits validate-digits-range digits-range-1-</validate>

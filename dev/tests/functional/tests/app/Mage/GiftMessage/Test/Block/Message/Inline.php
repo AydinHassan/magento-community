@@ -20,7 +20,7 @@
  *
  * @category    Tests
  * @package     Tests_Functional
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -66,6 +66,13 @@ class Inline extends Form
     protected $giftMessageOrderButton = '#allow-gift-options-for-order-container a';
 
     /**
+     * Selector for checkbox for 'Add gift options for Individual Items'.
+     *
+     * @var string
+     */
+    protected $allowGiftMessagesForItems = '#allow_gift_messages_for_items';
+
+    /**
      * Gift options form css selector.
      *
      * @var string
@@ -82,7 +89,7 @@ class Inline extends Form
     public function fillGiftMessage(GiftMessage $giftMessage, array $products = [])
     {
         $this->waitForElementVisible($this->giftOptionsForm);
-        $this->fill($giftMessage);
+        $this->addGiftMessage($giftMessage);
 
         if ($giftMessage->getAllowGiftMessagesForOrder() === 'Yes') {
             $this->fillGiftMessageForOrder($giftMessage);
@@ -91,6 +98,23 @@ class Inline extends Form
         if ($giftMessage->getAllowGiftOptionsForItems() === 'Yes') {
             $this->fillGiftGiftOptionsForItems($giftMessage, $products);
         }
+    }
+
+    /**
+     * @param $giftMessage
+     * @throws \Exception
+     */
+    protected function addGiftMessage($giftMessage)
+    {
+        $giftMessageData = $giftMessage->getData();
+        unset(
+            $giftMessageData['sender'],
+            $giftMessageData['recipient'],
+            $giftMessageData['message'],
+            $giftMessageData['items']
+        );
+        $mapping = $this->dataMapping($giftMessageData);
+        $this->_fill($mapping);
     }
 
     /**
@@ -117,8 +141,15 @@ class Inline extends Form
      */
     protected function fillGiftMessageForOrder(GiftMessage $giftMessage)
     {
-        $this->_rootElement->find($this->giftMessageOrderButton)->click();
-        $this->getGiftMessageOrderForm()->fill($giftMessage);
+        if ($this->_rootElement->find($this->giftMessageOrderButton)->isVisible()) {
+            $this->_rootElement->find($this->giftMessageOrderButton)->click();
+        } else {
+            $this->_rootElement->find($this->allowGiftMessagesForItems)->click();
+        }
+        $messageData = $giftMessage->getData();
+        unset($messageData['allow_gift_options'], $messageData['allow_gift_messages_for_order']);
+        $mapping = $this->getGiftMessageOrderForm()->dataMapping($messageData);
+        $this->getGiftMessageOrderForm()->_fill($mapping);
     }
 
     /**

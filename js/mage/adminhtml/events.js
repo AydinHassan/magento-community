@@ -19,7 +19,7 @@
  *
  * @category    Mage
  * @package     Mage_Adminhtml
- * @copyright   Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright   Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 // from http://www.someelement.com/2007/03/eventpublisher-custom-events-la-pubsub.html
@@ -102,7 +102,9 @@ varienEvents.prototype = {
                         if (this.arrEvents[evtName][i].asynch) {
                             var eventArgs = arguments[1];
                             var method = this.arrEvents[evtName][i].method.bind(this);
-                            setTimeout(function() { method(eventArgs) }.bind(this), 10);
+                            setTimeout(function() {
+                                method(eventArgs);
+                            }.bind(this), 10);
                         }
                         else{
                             result = this.arrEvents[evtName][i].method(arguments[1]);

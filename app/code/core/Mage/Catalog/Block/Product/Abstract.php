@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Catalog
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -103,6 +103,16 @@ abstract class Mage_Catalog_Block_Product_Abstract extends Mage_Core_Block_Templ
      * @var string
      */
     protected $_mapRenderer = 'msrp';
+
+    /**
+     * Get catalog product helper
+     *
+     * @return Mage_Catalog_Helper_Product
+     */
+    public function getProductHelper()
+    {
+        return Mage::helper('catalog/product');
+    }
 
     /**
      * Retrieve url for add product to cart
@@ -195,12 +205,7 @@ abstract class Mage_Catalog_Block_Product_Abstract extends Mage_Core_Block_Templ
      */
     public function getMinimalQty($product)
     {
-        $stockItem = $product->getStockItem();
-        if ($stockItem) {
-            return ($stockItem->getMinSaleQty()
-            && $stockItem->getMinSaleQty() > 0 ? $stockItem->getMinSaleQty() * 1 : null);
-        }
-        return null;
+        return $this->getProductHelper()->getMinimalQty($product);
     }
 
     /**

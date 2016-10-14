@@ -20,7 +20,7 @@
  *
  * @category    Tests
  * @package     Tests_Functional
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -65,9 +65,9 @@ class EntityId extends InjectableFixture
     public function __construct(FixtureFactory $fixtureFactory, array $params, array $data = [])
     {
         $this->params = $params;
-        if (isset($data['dataSet'])) {
-            list($typeFixture, $dataSet) = explode('::', $data['dataSet']);
-            $fixture = $fixtureFactory->createByCode($typeFixture, ['dataSet' => $dataSet]);
+        if (isset($data['dataset'])) {
+            list($typeFixture, $dataset) = explode('::', $data['dataset']);
+            $fixture = $fixtureFactory->createByCode($typeFixture, ['dataset' => $dataset]);
             if (!$fixture->hasData('id')) {
                 $fixture->persist();
             }

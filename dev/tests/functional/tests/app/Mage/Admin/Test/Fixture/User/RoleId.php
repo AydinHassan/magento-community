@@ -20,7 +20,7 @@
  *
  * @category    Tests
  * @package     Tests_Functional
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -35,7 +35,7 @@ use Mage\Admin\Test\Fixture\Role;
  * Role id field data source.
  *
  * Data keys:
- *  - dataSet
+ *  - dataset
  *  - role
  */
 class RoleId implements FixtureInterface
@@ -63,8 +63,8 @@ class RoleId implements FixtureInterface
     public function __construct(FixtureFactory $fixtureFactory, array $params, array $data = [])
     {
         $this->params = $params;
-        if (isset($data['dataSet'])) {
-            $this->role = $fixtureFactory->createByCode('role', ['dataSet' => $data['dataSet']]);
+        if (isset($data['dataset'])) {
+            $this->role = $fixtureFactory->createByCode('role', ['dataset' => $data['dataset']]);
             if (!$this->role->hasData('role_id')) {
                 $this->role->persist();
             }

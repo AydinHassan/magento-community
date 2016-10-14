@@ -20,7 +20,7 @@
  *
  * @category    Tests
  * @package     Tests_Functional
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -34,7 +34,7 @@ use Magento\Mtf\Fixture\FixtureInterface;
  * Tax class ids source for customer group.
  *
  * Data keys:
- *  - dataSet
+ *  - dataset
  */
 class TaxClassIds implements FixtureInterface
 {
@@ -61,9 +61,9 @@ class TaxClassIds implements FixtureInterface
     public function __construct(FixtureFactory $fixtureFactory, array $params, array $data)
     {
         $this->params = $params;
-        if (isset($data['dataSet'])) {
+        if (isset($data['dataset'])) {
             /** @var TaxClass $taxClass */
-            $taxClass = $fixtureFactory->createByCode('taxClass', ['dataSet' => $data['dataSet']]);
+            $taxClass = $fixtureFactory->createByCode('taxClass', ['dataset' => $data['dataset']]);
             if (!$taxClass->hasData('id')) {
                 $taxClass->persist();
             }

@@ -20,7 +20,7 @@
  *
  * @category    Tests
  * @package     Tests_Functional
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -41,7 +41,7 @@ use Mage\Customer\Test\Page\CustomerAccountLogout;
  * 4. Go to Sales > Orders.
  * 5. Select created order in the grid and open it.
  * 6. Click 'Ship' button.
- * 7. Fill data according to dataSet.
+ * 7. Fill data according to dataset.
  * 8. Click 'Submit Shipment' button.
  * 9. Perform asserts.
  *

@@ -21,7 +21,7 @@
  *
  * @category    Tests
  * @package     Tests_Functional
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 -->
@@ -30,6 +30,7 @@
         <allow>
             <class value="Mage\Checkout\Test\TestCase\OnePageCheckoutTest" />
             <class value="Mage\Checkout\Test\TestCase\OnePageCheckoutWithinOnlineShippingMethods" />
+            <class value="Mage\Checkout\Test\TestCase\OnePageCheckoutWithinDhlShippingMethod" />
             <class value="Mage\Downloadable\Test\TestCase\CreateDownloadableProductEntityTest" />
             <class value="Mage\Downloadable\Test\TestCase\TaxCalculationForDownloadableProductTest" />
             <class value="Mage\SalesRule\Test\TestCase\CreateSalesRuleEntityTest" />

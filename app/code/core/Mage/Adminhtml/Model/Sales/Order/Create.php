@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Adminhtml
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -595,6 +595,9 @@ class Mage_Adminhtml_Model_Sales_Order_Create extends Varien_Object implements M
                         $cartItem = $cart->addProduct($product, $info);
                         if (is_string($cartItem)) {
                             Mage::throwException($cartItem);
+                        }
+                        if ($cartItem->getParentItem()) {
+                            $cartItem = $cartItem->getParentItem();
                         }
                         $cartItem->setPrice($item->getProduct()->getPrice());
                         $this->_needCollectCart = true;

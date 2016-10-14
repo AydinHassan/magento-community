@@ -20,7 +20,7 @@
  *
  * @category    Tests
  * @package     Tests_Functional
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -32,7 +32,7 @@ use Mage\Catalog\Test\Fixture\CatalogProductSimple;
  * Preconditions:
  *  1. Execute before each variation:
  *   - Delete all active catalog price rules.
- *   - Create catalog price rule from dataSet using Curl.
+ *   - Create catalog price rule from dataset using Curl.
  *
  * Steps:
  *  1. Apply all created rules.
@@ -60,7 +60,7 @@ class ApplySeveralCatalogPriceRuleEntityTest extends AbstractCatalogRuleEntityTe
             }
             $this->catalogRules[$key] = $this->fixtureFactory->createByCode(
                 'catalogRule',
-                ['dataSet' => $catalogPriceRule]
+                ['dataset' => $catalogPriceRule]
             );
             $this->catalogRules[$key]->persist();
 
@@ -74,7 +74,7 @@ class ApplySeveralCatalogPriceRuleEntityTest extends AbstractCatalogRuleEntityTe
         // Create product
         $productSimple = $this->fixtureFactory->createByCode(
             'catalogProductSimple',
-            ['dataSet' => 'simple_for_salesrule_1']
+            ['dataset' => 'simple_for_salesrule_1']
         );
         $productSimple->persist();
 

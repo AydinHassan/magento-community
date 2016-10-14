@@ -20,7 +20,7 @@
  *
  * @category    Tests
  * @package     Tests_Functional
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -62,6 +62,13 @@ class ContinueDownloadBlock extends Block
     protected $startDownload = '#install_all button[type="submit"]';
 
     /**
+     * Continue Magento installaltion button selector.
+     *
+     * @var string
+     */
+    protected $continueMagentoInstallation = '#connect_iframe_success button[type="button"]';
+
+    /**
      * Continue installation.
      *
      * @return void
@@ -100,5 +107,16 @@ class ContinueDownloadBlock extends Block
     public function startDownload()
     {
         $this->_rootElement->find($this->startDownload)->click();
+    }
+
+    /**
+     * Continue installation.
+     *
+     * @return void
+     */
+    public function continueMagentoInstallation()
+    {
+        $this->waitForElementVisible($this->continueMagentoInstallation);
+        $this->_rootElement->find($this->continueMagentoInstallation)->click();
     }
 }

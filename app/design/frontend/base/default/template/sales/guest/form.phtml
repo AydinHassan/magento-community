@@ -20,7 +20,7 @@
  *
  * @category    design
  * @package     base_default
- * @copyright   Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright   Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 ?>
@@ -61,8 +61,8 @@
                </div>
                <div class="input-box">
                    <select name="oar_type" id="quick_search_type_id" class="select guest-select" title="" onchange="showIdentifyBlock(this.value);">
-                       <option value="email">Email Address</option>
-                       <option value="zip">ZIP Code</option>
+                       <option value="email"><?php echo Mage::helper('sales')->__('Email Address') ?></option>
+                       <option value="zip"><?php echo Mage::helper('sales')->__('ZIP Code') ?></option>
                    </select>
                </div>
            </li>

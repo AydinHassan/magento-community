@@ -20,7 +20,7 @@
  *
  * @category    Tests
  * @package     Tests_Functional
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -58,8 +58,8 @@ class ParentId implements FixtureInterface
     public function __construct(FixtureFactory $fixtureFactory, array $params, $data = [])
     {
         $this->params = $params;
-        if (isset($data['dataSet'])) {
-            $this->parentCategory = $fixtureFactory->createByCode('catalogCategory', ['dataSet' => $data['dataSet']]);
+        if (isset($data['dataset'])) {
+            $this->parentCategory = $fixtureFactory->createByCode('catalogCategory', ['dataset' => $data['dataset']]);
             if (!$this->parentCategory->hasData('id')) {
                 $this->parentCategory->persist();
             }

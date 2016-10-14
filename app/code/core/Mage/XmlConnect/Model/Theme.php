@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_XmlConnect
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -62,12 +62,14 @@ class Mage_XmlConnect_Model_Theme
      */
     public function __construct($file)
     {
+        $io = new Varien_Io_File();
         $this->_file = $file;
         if (!file_exists($file)) {
-            Mage::throwException(Mage::helper('xmlconnect')->__('File doesn\'t exist "%s".', $file));
+            Mage::throwException(Mage::helper('xmlconnect')->__('File doesn\'t exist "%s".',
+                $io->getFilteredPath($file)));
         }
         if (!is_readable($file)) {
-            Mage::throwException(Mage::helper('xmlconnect')->__('Can\'t read file "%s".', $file));
+            Mage::throwException(Mage::helper('xmlconnect')->__('Can\'t read file "%s".', $io->getFilteredPath($file)));
         }
         try {
             $text = file_get_contents($file);
@@ -190,7 +192,8 @@ class Mage_XmlConnect_Model_Theme
         $ioFile = new Varien_Io_File();
         if (!$ioFile->cp($currentThemeFileName, $filePath)) {
             Mage::throwException(
-                Mage::helper('xmlconnect')->__('Can\'t copy file "%s" to "%s".', $currentThemeFileName, $filePath)
+                Mage::helper('xmlconnect')->__('Can\'t copy file "%s" to "%s".',
+                    $ioFile->getFilteredPath($currentThemeFileName), $ioFile->getFilteredPath($filePath))
             );
         } else {
             $ioFile->chmod($filePath, 0755);
@@ -320,7 +323,9 @@ class Mage_XmlConnect_Model_Theme
         if (is_writeable($this->_file)) {
             file_put_contents($this->_file, $xml->asXML());
         } else {
-            Mage::throwException(Mage::helper('xmlconnect')->__('Can\'t write to file "%s".', $this->_file));
+            $io = new Varien_Io_File();
+            Mage::throwException(Mage::helper('xmlconnect')->__('Can\'t write to file "%s".',
+                $io->getFilteredPath($this->_file)));
         }
     }
 }

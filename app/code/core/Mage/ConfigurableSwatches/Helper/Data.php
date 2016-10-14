@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_ConfigurableSwatches
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 class Mage_ConfigurableSwatches_Helper_Data extends Mage_Core_Helper_Abstract
@@ -92,7 +92,10 @@ class Mage_ConfigurableSwatches_Helper_Data extends Mage_Core_Helper_Abstract
     public function getSwatchAttributeIds()
     {
         if (is_null($this->_configAttributeIds)) {
-            $this->_configAttributeIds = explode(',', Mage::getStoreConfig(self::CONFIG_PATH_SWATCH_ATTRIBUTES));
+            $this->_configAttributeIds = array();
+            if (Mage::getStoreConfig(self::CONFIG_PATH_SWATCH_ATTRIBUTES)) {
+                $this->_configAttributeIds = explode(',', Mage::getStoreConfig(self::CONFIG_PATH_SWATCH_ATTRIBUTES));
+            }
         }
         return $this->_configAttributeIds;
     }
@@ -110,5 +113,28 @@ class Mage_ConfigurableSwatches_Helper_Data extends Mage_Core_Helper_Abstract
         }
         $configAttrs = $this->getSwatchAttributeIds();
         return in_array($attr, $configAttrs);
+    }
+
+    /**
+     * Get swatches product javascript
+     *
+     * @return string
+     */
+    public function getSwatchesProductJs()
+    {
+        /**
+         * @var $product Mage_Catalog_Model_Product
+         */
+        $product = Mage::registry('current_product');
+        if ($this->isEnabled() && $product) {
+            $configAttrs = $this->getSwatchAttributeIds();
+            $configurableAttributes = $product->getTypeInstance(true)->getConfigurableAttributesAsArray($product);
+            foreach ($configurableAttributes as $configurableAttribute) {
+                if (in_array($configurableAttribute['attribute_id'], $configAttrs)) {
+                    return 'js/configurableswatches/swatches-product.js';
+                }
+            }
+        }
+        return '';
     }
 }

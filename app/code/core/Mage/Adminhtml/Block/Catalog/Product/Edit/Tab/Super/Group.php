@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Adminhtml
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -156,7 +156,8 @@ class Mage_Adminhtml_Block_Catalog_Product_Edit_Tab_Super_Group extends Mage_Adm
             'validate_class' => 'validate-number',
             'index'     => 'qty',
             'width'     => '1',
-            'editable'  => true
+            'editable'  => true,
+            'filter_condition_callback' => array($this, '_addLinkModelFilterCallback')
         ));
 
         $this->addColumn('position', array(
@@ -167,7 +168,8 @@ class Mage_Adminhtml_Block_Catalog_Product_Edit_Tab_Super_Group extends Mage_Adm
             'index'     => 'position',
             'width'     => '1',
             'editable'  => true,
-            'edit_only' => !$this->_getProduct()->getId()
+            'edit_only' => !$this->_getProduct()->getId(),
+            'filter_condition_callback' => array($this, '_addLinkModelFilterCallback')
         ));
 
         return parent::_prepareColumns();

@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Bundle
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -85,8 +85,13 @@ class Mage_Bundle_Block_Catalog_Product_View_Type_Bundle_Option extends Mage_Bun
             $_canChangeQty = $_default->getSelectionCanChangeQty();
         } elseif (!$inPreConfigured && $selectedOptions && is_numeric($selectedOptions)) {
             $selectedSelection = $_option->getSelectionById($selectedOptions);
-            $_defaultQty = $selectedSelection->getSelectionQty() * 1;
-            $_canChangeQty = $selectedSelection->getSelectionCanChangeQty();
+            if ($selectedSelection) {
+                $_defaultQty = $selectedSelection->getSelectionQty() * 1;
+                $_canChangeQty = $selectedSelection->getSelectionCanChangeQty();
+            } else {
+                $_defaultQty = $_selections[0]->getSelectionQty() * 1;
+                $_canChangeQty = $_selections[0]->getSelectionCanChangeQty();
+            }
         } elseif (!$this->_showSingle() || $inPreConfigured) {
             $_defaultQty = $this->_getSelectedQty();
             $_canChangeQty = (bool)$_defaultQty;

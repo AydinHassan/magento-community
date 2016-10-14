@@ -20,7 +20,7 @@
  *
  * @category    design
  * @package     default_default
- * @copyright   Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright   Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 ?>
@@ -120,7 +120,7 @@
     $('system_media_storage_configuration_media_database').observe('change', checkButtonState);
 
     function checkStatus() {
-        u = new Ajax.PeriodicalUpdater('', '<?php echo $this->getAjaxStatusUpdateUrl() ?>', {
+        var u = new Ajax.PeriodicalUpdater('', '<?php echo $this->getAjaxStatusUpdateUrl() ?>', {
             method:     'get',
             frequency:  5,
             loaderArea: false,
@@ -129,7 +129,7 @@
                 var response;
 
                 try {
-                    response = eval('(' + transport.responseText + ')');
+                    response = transport.responseJSON || transport.responseText.evalJSON(true) || {};
                     if (response.state == '<?php echo Mage_Core_Model_File_Storage_Flag::STATE_RUNNING ?>'
                         && response.message
                     ) {

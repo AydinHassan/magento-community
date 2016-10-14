@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Sales
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -156,13 +156,13 @@ class Mage_Sales_Model_Resource_Quote extends Mage_Sales_Model_Resource_Abstract
     /**
      * Check is order increment id use in sales/order table
      *
-     * @param int $orderIncrementId
+     * @param string $orderIncrementId
      * @return boolean
      */
     public function isOrderIncrementIdUsed($orderIncrementId)
     {
         $adapter   = $this->_getReadAdapter();
-        $bind      = array(':increment_id' => (int)$orderIncrementId);
+        $bind      = array(':increment_id' => $orderIncrementId);
         $select    = $adapter->select();
         $select->from($this->getTable('sales/order'), 'entity_id')
             ->where('increment_id = :increment_id');

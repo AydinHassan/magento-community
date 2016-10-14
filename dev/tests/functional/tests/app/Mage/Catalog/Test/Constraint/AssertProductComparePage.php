@@ -20,7 +20,7 @@
  *
  * @category    Tests
  * @package     Tests_Functional
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -105,8 +105,8 @@ class AssertProductComparePage extends AbstractConstraint
                 ? ($product->hasData($attribute)
                     ? $product->getData($attribute)
                     : 'N/A')
-                : ($product->getDataFieldConfig('price')['source']->getPreset() !== null
-                    ? $product->getDataFieldConfig('price')['source']->getPreset()
+                : ($product->getDataFieldConfig('price')['source']->getPriceData() !== null
+                    ? $product->getDataFieldConfig('price')['source']->getPriceData()
                     : number_format($product->getPrice(), 2));
 
             $data['attributeValues'][$attribute] = !is_array($attributeValue) ? strtolower(

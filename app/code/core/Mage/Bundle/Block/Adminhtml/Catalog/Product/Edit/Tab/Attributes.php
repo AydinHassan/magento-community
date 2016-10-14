@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Bundle
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -121,6 +121,7 @@ class Mage_Bundle_Block_Adminhtml_Catalog_Product_Edit_Tab_Attributes
             $groupPrice->setRenderer(
                 $this->getLayout()->createBlock('adminhtml/catalog_product_edit_tab_price_group')
                     ->setPriceColumnHeader(Mage::helper('bundle')->__('Percent Discount'))
+                    ->setIsPercent(true)
                     ->setPriceValidation('validate-greater-than-zero validate-percents')
             );
         }

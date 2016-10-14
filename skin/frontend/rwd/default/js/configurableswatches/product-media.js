@@ -19,7 +19,7 @@
  *
  * @category    design
  * @package     rwd_default
- * @copyright   Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright   Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 
@@ -52,17 +52,19 @@ var ConfigurableMediaImages = {
         var compatibleProducts = [];
         var compatibleProductSets = [];
         selectedLabels.each(function(selectedLabel) {
-            if(!productFallback['option_labels'][selectedLabel]) {
-                return;
+            if(typeof(productFallback['option_labels']) != 'undefined') {
+                if (!productFallback['option_labels'][selectedLabel]) {
+                    return;
+                }
+
+                var optionProducts = productFallback['option_labels'][selectedLabel]['products'];
+                compatibleProductSets.push(optionProducts);
+
+                //optimistically push all products
+                optionProducts.each(function (productId) {
+                    compatibleProducts.push(productId);
+                });
             }
-
-            var optionProducts = productFallback['option_labels'][selectedLabel]['products'];
-            compatibleProductSets.push(optionProducts);
-
-            //optimistically push all products
-            optionProducts.each(function(productId) {
-                compatibleProducts.push(productId);
-            });
         });
 
         //intersect compatible products
@@ -88,10 +90,12 @@ var ConfigurableMediaImages = {
         }
 
         //first, try to get label-matching image on config product for this option's label
-        var currentLabelImage = fallback['option_labels'][optionLabel];
-        if(currentLabelImage && fallback['option_labels'][optionLabel]['configurable_product'][ConfigurableMediaImages.imageType]) {
-            //found label image on configurable product
-            return fallback['option_labels'][optionLabel]['configurable_product'][ConfigurableMediaImages.imageType];
+        if(typeof(fallback['option_labels']) != 'undefined') {
+            var currentLabelImage = fallback['option_labels'][optionLabel];
+            if (currentLabelImage && fallback['option_labels'][optionLabel]['configurable_product'][ConfigurableMediaImages.imageType]) {
+                //found label image on configurable product
+                return fallback['option_labels'][optionLabel]['configurable_product'][ConfigurableMediaImages.imageType];
+            }
         }
 
         var compatibleProducts = ConfigurableMediaImages.getCompatibleProductImages(fallback, selectedLabels);

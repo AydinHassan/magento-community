@@ -20,7 +20,7 @@
  *
  * @category    Tests
  * @package     Tests_Functional
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -144,6 +144,7 @@ class CustomOptions extends Tab
         foreach ($fields['custom_options']['value'] as $key => $field) {
             $element = $this->getOptionsBlock(($key + 1), $context);
             $data = $this->dataMapping($field);
+            unset($data['options']);
             $result['custom_options'][$key] = $this->_getData($data, $element);
             $result['custom_options'][$key]['options'] = $this->getSubOptions($element);
         }

@@ -20,7 +20,7 @@
  *
  * @category    Varien
  * @package     Varien_Io
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -114,5 +114,21 @@ abstract class Varien_Io_Abstract implements Varien_Io_Interface
     public function allowedPath($haystackPath, $needlePath)
     {
         return strpos($this->getCleanPath($haystackPath), $this->getCleanPath($needlePath)) === 0;
+    }
+
+    /**
+     * Replace full path to relative
+     *
+     * @param $path
+     * @return string
+     */
+    public function getFilteredPath($path)
+    {
+        $dir = pathinfo($_SERVER['SCRIPT_FILENAME'], PATHINFO_DIRNAME);
+        $position = strpos($path, $dir);
+        if ($position !== false && $position < 1) {
+            $path = substr_replace($path, '.', 0, strlen($dir));
+        }
+        return $path;
     }
 }

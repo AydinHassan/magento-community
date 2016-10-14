@@ -21,12 +21,12 @@
  *
  * @category    Tests
  * @package     Tests_Functional
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
-    <testCase name="Mage\Paypal\Test\TestCase\CreateOnlineRefundForPaypalExpressCheckoutTest">
+    <testCase name="Mage\Paypal\Test\TestCase\CreateOnlineRefundForPaypalExpressCheckoutTest" summary="CreateOnlineRefundForPaypalExpressCheckoutTest">
         <variation name="CreateOnlineRefundForPaypalExpressCheckoutTestVariation1" method="test">
             <data name="description" xsi:type="string">Create full refund for paypal express checkout with line items mark require billing address</data>
             <data name="products" xsi:type="string">catalogProductSimple::default</data>

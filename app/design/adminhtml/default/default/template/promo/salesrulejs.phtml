@@ -20,7 +20,7 @@
  *
  * @category    design
  * @package     default_default
- * @copyright   Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright   Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 ?>
@@ -91,10 +91,8 @@ function generateCouponCodes(idPrefix, generateUrl, grid) {
         parameters :params,
         method :'post',
         onComplete : function (transport, param){
-            var response = false;
-            if (transport && transport.responseText) {
-                response = eval('(' + transport.responseText + ')');
-            }
+            var response = transport.responseJSON || transport.responseText.evalJSON(true) || {};
+
             if (couponCodesGrid) {
                 couponCodesGrid.reload();
             }
@@ -102,7 +100,7 @@ function generateCouponCodes(idPrefix, generateUrl, grid) {
                 $('messages').update(response.messages);
             }
             if (response && response.error) {
-                alert(response.error);
+                alert(response.error.stripTags().toString());
             }
         }
     });

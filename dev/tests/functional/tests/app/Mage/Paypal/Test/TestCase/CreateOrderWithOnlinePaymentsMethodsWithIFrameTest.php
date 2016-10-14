@@ -20,7 +20,7 @@
  *
  * @category    Tests
  * @package     Tests_Functional
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -35,10 +35,10 @@ namespace Mage\Paypal\Test\TestCase;
  * 1. Go to Frontend.
  * 2. Add products to the cart.
  * 3. Click the 'Proceed to Checkout' button.
- * 4. Select checkout method according to dataSet.
+ * 4. Select checkout method according to dataset.
  * 5. Fill billing information and select the 'Ship to this address' option.
- * 6. Select shipping method according to dataSet.
- * 7. Select payment method according to dataSet.
+ * 6. Select shipping method according to dataset.
+ * 7. Select payment method according to dataset.
  * 8. Fill credit card in i-frame and place order.
  * 9. Perform assertions.
  *

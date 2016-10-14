@@ -20,7 +20,7 @@
  *
  * @category    Tests
  * @package     Tests_Functional
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -60,13 +60,13 @@ class CreateTaxWithFptTest extends Scenario
             'Mage\Core\Test\TestStep\SetupConfigurationStep',
             ['configData' => 'default_tax_configuration']
         )->run();
-        $customer = $fixtureFactory->createByCode('customer', ['dataSet' => 'johndoe_with_addresses']);
+        $customer = $fixtureFactory->createByCode('customer', ['dataset' => 'johndoe_with_addresses']);
         $customer->persist();
-        $taxRule = $fixtureFactory->createByCode('taxRule', ['dataSet' => 'tax_rule_default']);
+        $taxRule = $fixtureFactory->createByCode('taxRule', ['dataset' => 'tax_rule_default']);
         $taxRule->persist();
         $productTemplate = $fixtureFactory->createByCode(
             'catalogAttributeSet',
-            ['dataSet' => 'custom_attribute_set_with_fpt']
+            ['dataset' => 'custom_attribute_set_with_fpt']
         );
         $productTemplate->persist();
 

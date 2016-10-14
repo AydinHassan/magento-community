@@ -19,7 +19,7 @@
  *
  * @category    Mage
  * @package     Mage_Adminhtml
- * @copyright   Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright   Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 
@@ -137,7 +137,7 @@ varienLoader.prototype = {
 
     getCache : function(url){
         if(this.cache.get(url)){
-            return this.cache.get(url)
+            return this.cache.get(url);
         }
         return false;
     },
@@ -183,7 +183,7 @@ varienLoader.prototype = {
             this.callback(transport.responseText);
         }
     }
-}
+};
 
 if (!window.varienLoaderHandler)
     var varienLoaderHandler = new Object();
@@ -197,7 +197,7 @@ varienLoaderHandler.handler = {
         request.options.loaderArea = $$('#html-body .wrapper')[0]; // Blocks all page
 
         if(request && request.options.loaderArea){
-            Element.clonePosition($('loading-mask'), $(request.options.loaderArea), {offsetLeft:-2})
+            Element.clonePosition($('loading-mask'), $(request.options.loaderArea), {offsetLeft:-2});
             toggleSelectsUnderBlock($('loading-mask'), false);
             Element.show('loading-mask');
             setLoaderPosition();

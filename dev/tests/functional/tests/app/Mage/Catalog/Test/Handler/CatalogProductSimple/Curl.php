@@ -20,14 +20,13 @@
  *
  * @category    Tests
  * @package     Tests_Functional
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
 namespace Mage\Catalog\Test\Handler\CatalogProductSimple;
 
 use Magento\Mtf\Fixture\FixtureInterface;
-use Magento\Mtf\Util\Protocol\CurlInterface;
 use Magento\Mtf\Util\Protocol\CurlTransport;
 use Magento\Mtf\Handler\Curl as AbstractCurl;
 use Magento\Mtf\Util\Protocol\CurlTransport\BackendDecorator;
@@ -476,7 +475,7 @@ class Curl extends AbstractCurl implements CatalogProductSimpleInterface
         $url = $this->getUrl($config);
         $curl = new BackendDecorator(new CurlTransport(), $this->_configuration);
         $curl->addOption(CURLOPT_HEADER, 1);
-        $curl->write(CurlInterface::POST, $url, '1.1', [], $data);
+        $curl->write($url, $data);
         $response = $curl->read();
         $curl->close();
 

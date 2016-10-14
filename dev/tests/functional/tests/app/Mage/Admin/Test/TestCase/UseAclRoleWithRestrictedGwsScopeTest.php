@@ -20,7 +20,7 @@
  *
  * @category    Tests
  * @package     Tests_Functional
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -81,9 +81,9 @@ class UseAclRoleWithRestrictedGwsScopeTest extends Injectable
     public function __prepare(FixtureFactory $fixtureFactory)
     {
         /** @var Role $role */
-        $role = $fixtureFactory->createByCode('role', ['dataSet' => 'custom_with_gws_scope']);
+        $role = $fixtureFactory->createByCode('role', ['dataset' => 'custom_with_gws_scope']);
         $role->persist();
-        $user = $fixtureFactory->createByCode('user', ['dataSet' => 'admin_without_role']);
+        $user = $fixtureFactory->createByCode('user', ['dataset' => 'admin_without_role']);
         $user->persist();
 
         $this->fixtureFactory = $fixtureFactory;
@@ -133,7 +133,6 @@ class UseAclRoleWithRestrictedGwsScopeTest extends Injectable
         $userData = $user->getData();
         $userData['role_id'] = ['role' => $role];
         unset($userData['user_id']);
-        unset($userData['password_confirmation']);
 
         return $this->fixtureFactory->createByCode('user', ['data' => $userData]);
     }

@@ -20,7 +20,7 @@
  *
  * @category    Tests
  * @package     Tests_Functional
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -29,6 +29,7 @@ namespace Mage\Review\Test\Constraint;
 use Magento\Mtf\Constraint\AbstractConstraint;
 use Magento\Mtf\ObjectManager;
 use Mage\Catalog\Test\Page\Product\CatalogProductView;
+use Magento\Mtf\System\Event\EventManagerInterface;
 
 /**
  * Assert that product don't have a review on product page.
@@ -54,11 +55,12 @@ class AssertProductReviewIsAbsentOnProductPage extends AbstractConstraint
     /**
      * @constructor
      * @param ObjectManager $objectManager
+     * @param EventManagerInterface $eventManager
      * @param CatalogProductView $catalogProductView
      */
-    public function __construct(ObjectManager $objectManager, CatalogProductView $catalogProductView)
+    public function __construct(ObjectManager $objectManager, EventManagerInterface $eventManager,CatalogProductView $catalogProductView)
     {
-        parent::__construct($objectManager);
+        parent::__construct($objectManager, $eventManager);
         $this->catalogProductView = $catalogProductView;
     }
 

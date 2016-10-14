@@ -20,7 +20,7 @@
  *
  * @category    Tests
  * @package     Tests_Functional
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -85,10 +85,14 @@ class WidgetForm extends FormTabs
     public function getData(FixtureInterface $fixture = null, Element $element = null)
     {
         $widgetType = $fixture->getWidgetOptions()['type_id'];
-        if ($this->hasRender($widgetType)) {
+        if ($this->hasRender($widgetType) && $widgetType != 'bannerRotator') {
             return $this->callRender($widgetType, 'getData', ['InjectableFixture' => $fixture, 'Element' => $element]);
-        } else {
-            return parent::getData($fixture, $element);
+        } elseif ($widgetType == 'bannerRotator') {
+            $fixtureData = $fixture->getData();
+            unset($fixtureData['widgetOptions'][0]['entities']);
+            return $fixtureData;
+        }    else {
+                return parent::getData($fixture, $element);
         }
     }
 }

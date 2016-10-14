@@ -20,7 +20,7 @@
  *
  * @category    Tests
  * @package     Tests_Functional
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -34,6 +34,7 @@ use Magento\Mtf\Fixture\InjectableFixture;
 use Magento\Mtf\ObjectManager;
 use Mage\Checkout\Test\Page\CheckoutOnepage;
 use Mage\Checkout\Test\Page\CheckoutOnepageSuccess;
+use Magento\Mtf\System\Event\EventManagerInterface;
 use Mage\Sales\Test\Page\OrderView;
 
 /**
@@ -90,6 +91,7 @@ abstract class AbstractAssertOrderTaxOnBackend extends AbstractAssertTaxCalculat
     /**
      * @constructor
      * @param ObjectManager $objectManager
+     * @param EventManagerInterface $eventManager
      * @param \Mage\Sales\Test\Page\Adminhtml\SalesOrderView $salesOrderView
      * @param SalesOrderIndex $orderIndex
      * @param SalesOrderInvoiceNew $orderInvoiceNew
@@ -100,6 +102,7 @@ abstract class AbstractAssertOrderTaxOnBackend extends AbstractAssertTaxCalculat
      */
     public function __construct(
         ObjectManager $objectManager,
+        EventManagerInterface $eventManager,
         SalesOrderView $salesOrderView,
         SalesOrderIndex $orderIndex,
         SalesOrderInvoiceNew $orderInvoiceNew,
@@ -108,7 +111,7 @@ abstract class AbstractAssertOrderTaxOnBackend extends AbstractAssertTaxCalculat
         CheckoutOnepageSuccess $checkoutOnepageSuccess,
         OrderView $orderView
     ) {
-        parent::__construct($objectManager, $checkoutOnepage, $checkoutOnepageSuccess, $orderView);
+        parent::__construct($objectManager, $eventManager, $checkoutOnepage, $checkoutOnepageSuccess, $orderView);
         $this->orderView = $salesOrderView;
         $this->orderInvoiceNew = $orderInvoiceNew;
         $this->orderCreditMemoNew = $orderCreditMemoNew;

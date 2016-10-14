@@ -20,7 +20,7 @@
  *
  * @category    Tests
  * @package     Tests_Functional
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -36,7 +36,7 @@ use Magento\Mtf\TestCase\Scenario;
  * Steps:
  * 1. Open on backend Sales > Terms and conditions.
  * 2. Click "Add New Condition".
- * 3. Fill data from dataSet.
+ * 3. Fill data from dataset.
  * 4. Click "Save Condition".
  * 5. Perform all assertions.
  *

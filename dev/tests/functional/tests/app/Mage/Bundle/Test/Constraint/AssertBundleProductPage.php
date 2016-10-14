@@ -20,7 +20,7 @@
  *
  * @category    Tests
  * @package     Tests_Functional
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -42,7 +42,7 @@ class AssertBundleProductPage extends AssertProductPage
     protected function verifyPrice()
     {
         $errors = [];
-        $priceData = $this->product->getDataFieldConfig('price')['source']->getPreset();
+        $priceData = $this->product->getDataFieldConfig('price')['source']->getPriceData();
         $priceBlock = $this->catalogProductView->getBundleViewBlock()->getPriceBlock();
         $priceLow = ($this->product->getPriceView() == 'Price Range')
             ? $priceBlock->getPriceFrom()

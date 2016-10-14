@@ -21,18 +21,18 @@
  *
  * @category    Tests
  * @package     Tests_Functional
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../vendor/magento/mtf/etc/variations.xsd">
-    <testCase name="Mage\Catalog\Test\TestCase\Product\CreateSimpleProductEntityTest">
-        <variation name="CreateSimpleProductEntityTestVariation1" firstConstraint="Mage\Catalog\Test\Constraint\AssertProductSaveMessage" method="test">
+    <testCase name="Mage\Catalog\Test\TestCase\Product\CreateSimpleProductEntityTest" summary="Create Simple Product">
+        <variation name="CreateSimpleProductEntityTestVariation1">
             <data name="description" xsi:type="string">Create Simple default product</data>
             <data name="product/data/name" xsi:type="string">Simple Product %isolation%</data>
             <data name="product/data/sku" xsi:type="string">simple_sku_%isolation%</data>
             <data name="product/data/url_key" xsi:type="string">simple-sku-%isolation%</data>
-            <data name="product/data/tax_class_id/dataSet" xsi:type="string">Taxable Goods</data>
+            <data name="product/data/tax_class_id/dataset" xsi:type="string">Taxable Goods</data>
             <data name="product/data/price/value" xsi:type="string">10000</data>
             <data name="product/data/special_price" xsi:type="string">-</data>
             <data name="product/data/status" xsi:type="string">Enabled</data>
@@ -43,6 +43,7 @@
             <data name="product/data/stock_data/is_in_stock" xsi:type="string">In Stock</data>
             <data name="product/data/visibility" xsi:type="string">Catalog, Search</data>
             <data name="configData" xsi:type="string">-</data>
+            <data name="tag" xsi:type="string">main:ce</data>
             <constraint name="Mage\Catalog\Test\Constraint\AssertProductSaveMessage" next="Mage\Catalog\Test\Constraint\AssertProductInGrid" />
             <constraint name="Mage\Catalog\Test\Constraint\AssertProductInGrid" next="Mage\Catalog\Test\Constraint\AssertProductForm" prev="Mage\Catalog\Test\Constraint\AssertProductSaveMessage" />
             <constraint name="Mage\Catalog\Test\Constraint\AssertProductForm" next="Mage\Catalog\Test\Constraint\AssertProductInStock" prev="Mage\Catalog\Test\Constraint\AssertProductInGrid" />
@@ -56,7 +57,7 @@
             <data name="product/data/name" xsi:type="string">Simple Product %isolation%</data>
             <data name="product/data/sku" xsi:type="string">simple_sku_%isolation%</data>
             <data name="product/data/url_key" xsi:type="string">simple-sku-%isolation%</data>
-            <data name="product/data/tax_class_id/dataSet" xsi:type="string">Taxable Goods</data>
+            <data name="product/data/tax_class_id/dataset" xsi:type="string">Taxable Goods</data>
             <data name="product/data/price/value" xsi:type="string">300</data>
             <data name="product/data/special_price" xsi:type="string">-</data>
             <data name="product/data/status" xsi:type="string">Enabled</data>
@@ -65,9 +66,9 @@
             <data name="product/data/weight" xsi:type="string">51</data>
             <data name="product/data/stock_data/qty" xsi:type="string">658</data>
             <data name="product/data/stock_data/is_in_stock" xsi:type="string">In Stock</data>
-            <data name="product/data/checkout_data/preset" xsi:type="string">with_tier_price</data>
-            <data name="product/data/price/preset" xsi:type="string">with_tier_price</data>
-            <data name="product/data/tier_price/preset" xsi:type="string">for_all_groups</data>
+            <data name="product/data/checkout_data/dataset" xsi:type="string">with_tier_price</data>
+            <data name="product/data/price/dataset" xsi:type="string">with_tier_price</data>
+            <data name="product/data/tier_price/dataset" xsi:type="string">for_all_groups</data>
             <data name="configData" xsi:type="string">-</data>
             <constraint name="Mage\Catalog\Test\Constraint\AssertProductSaveMessage" next="Mage\Catalog\Test\Constraint\AssertProductInGrid" />
             <constraint name="Mage\Catalog\Test\Constraint\AssertProductInGrid" next="Mage\Catalog\Test\Constraint\AssertProductForm" prev="Mage\Catalog\Test\Constraint\AssertProductSaveMessage" />
@@ -82,7 +83,7 @@
             <data name="product/data/name" xsi:type="string">Simple Product %isolation%</data>
             <data name="product/data/sku" xsi:type="string">simple_sku_%isolation%</data>
             <data name="product/data/url_key" xsi:type="string">simple-sku-%isolation%</data>
-            <data name="product/data/tax_class_id/dataSet" xsi:type="string">Taxable Goods</data>
+            <data name="product/data/tax_class_id/dataset" xsi:type="string">Taxable Goods</data>
             <data name="product/data/price/value" xsi:type="string">10001</data>
             <data name="product/data/special_price" xsi:type="string">90</data>
             <data name="product/data/status" xsi:type="string">Enabled</data>
@@ -91,8 +92,8 @@
             <data name="product/data/weight" xsi:type="string">51</data>
             <data name="product/data/stock_data/qty" xsi:type="string">658</data>
             <data name="product/data/stock_data/is_in_stock" xsi:type="string">In Stock</data>
-            <data name="product/data/checkout_data/preset" xsi:type="string">with_special_price</data>
-            <data name="product/data/price/preset" xsi:type="string">with_special_price</data>
+            <data name="product/data/checkout_data/dataset" xsi:type="string">with_special_price</data>
+            <data name="product/data/price/dataset" xsi:type="string">with_special_price</data>
             <data name="configData" xsi:type="string">-</data>
             <constraint name="Mage\Catalog\Test\Constraint\AssertProductSaveMessage" next="Mage\Catalog\Test\Constraint\AssertProductInGrid" />
             <constraint name="Mage\Catalog\Test\Constraint\AssertProductInGrid" next="Mage\Catalog\Test\Constraint\AssertProductForm" prev="Mage\Catalog\Test\Constraint\AssertProductSaveMessage" />
@@ -107,7 +108,7 @@
             <data name="product/data/name" xsi:type="string">Simple Product %isolation%</data>
             <data name="product/data/sku" xsi:type="string">simple_sku_%isolation%</data>
             <data name="product/data/url_key" xsi:type="string">simple-sku-%isolation%</data>
-            <data name="product/data/tax_class_id/dataSet" xsi:type="string">Taxable Goods</data>
+            <data name="product/data/tax_class_id/dataset" xsi:type="string">Taxable Goods</data>
             <data name="product/data/price/value" xsi:type="string">10002</data>
             <data name="product/data/special_price" xsi:type="string">-</data>
             <data name="product/data/status" xsi:type="string">Enabled</data>
@@ -116,10 +117,10 @@
             <data name="product/data/weight" xsi:type="string">52</data>
             <data name="product/data/stock_data/qty" xsi:type="string">659</data>
             <data name="product/data/stock_data/is_in_stock" xsi:type="string">In Stock</data>
-            <data name="product/data/checkout_data/preset" xsi:type="string">with_group_price</data>
-            <data name="product/data/price/preset" xsi:type="string">with_group_price</data>
-            <data name="product/data/group_price/preset" xsi:type="string">for_not_logged_users</data>
-            <data name="product/data/tier_price/preset" xsi:type="string">-</data>
+            <data name="product/data/checkout_data/dataset" xsi:type="string">with_group_price</data>
+            <data name="product/data/price/dataset" xsi:type="string">with_group_price</data>
+            <data name="product/data/group_price/dataset" xsi:type="string">for_not_logged_users</data>
+            <data name="product/data/tier_price/dataset" xsi:type="string">-</data>
             <data name="configData" xsi:type="string">-</data>
             <constraint name="Mage\Catalog\Test\Constraint\AssertProductSaveMessage" next="Mage\Catalog\Test\Constraint\AssertProductInGrid" />
             <constraint name="Mage\Catalog\Test\Constraint\AssertProductInGrid" next="Mage\Catalog\Test\Constraint\AssertProductForm" prev="Mage\Catalog\Test\Constraint\AssertProductSaveMessage" />
@@ -134,7 +135,7 @@
             <data name="product/data/name" xsi:type="string">Simple Product %isolation%</data>
             <data name="product/data/sku" xsi:type="string">simple_sku_%isolation%</data>
             <data name="product/data/url_key" xsi:type="string">simple-sku-%isolation%</data>
-            <data name="product/data/tax_class_id/dataSet" xsi:type="string">Taxable Goods</data>
+            <data name="product/data/tax_class_id/dataset" xsi:type="string">Taxable Goods</data>
             <data name="product/data/price/value" xsi:type="string">10003</data>
             <data name="product/data/special_price" xsi:type="string">-</data>
             <data name="product/data/status" xsi:type="string">Enabled</data>
@@ -156,7 +157,7 @@
             <data name="product/data/name" xsi:type="string">Simple Product %isolation%</data>
             <data name="product/data/sku" xsi:type="string">simple_sku_%isolation%</data>
             <data name="product/data/url_key" xsi:type="string">simple-sku-%isolation%</data>
-            <data name="product/data/tax_class_id/dataSet" xsi:type="string">Taxable Goods</data>
+            <data name="product/data/tax_class_id/dataset" xsi:type="string">Taxable Goods</data>
             <data name="product/data/price/value" xsi:type="string">10004</data>
             <data name="product/data/status" xsi:type="string">Enabled</data>
             <data name="product/data/short_description" xsi:type="string">Short description for Simple Product with Custom options</data>
@@ -164,8 +165,8 @@
             <data name="product/data/weight" xsi:type="string">54</data>
             <data name="product/data/stock_data/qty" xsi:type="string">661</data>
             <data name="product/data/stock_data/is_in_stock" xsi:type="string">In Stock</data>
-            <data name="product/data/custom_options/preset" xsi:type="string">drop_down_with_two_options</data>
-            <data name="product/data/checkout_data/preset" xsi:type="string">with_one_custom_option</data>
+            <data name="product/data/custom_options/dataset" xsi:type="string">drop_down_with_two_options</data>
+            <data name="product/data/checkout_data/dataset" xsi:type="string">with_one_custom_option</data>
             <data name="configData" xsi:type="string">-</data>
             <constraint name="Mage\Catalog\Test\Constraint\AssertProductSaveMessage" next="Mage\Catalog\Test\Constraint\AssertProductInGrid" />
             <constraint name="Mage\Catalog\Test\Constraint\AssertProductInGrid" next="Mage\Catalog\Test\Constraint\AssertProductForm" prev="Mage\Catalog\Test\Constraint\AssertProductSaveMessage" />
@@ -179,7 +180,7 @@
             <data name="product/data/name" xsi:type="string">Simple Product %isolation%</data>
             <data name="product/data/sku" xsi:type="string">simple_sku_%isolation%</data>
             <data name="product/data/url_key" xsi:type="string">simple-sku-%isolation%</data>
-            <data name="product/data/tax_class_id/dataSet" xsi:type="string">Taxable Goods</data>
+            <data name="product/data/tax_class_id/dataset" xsi:type="string">Taxable Goods</data>
             <data name="product/data/price/value" xsi:type="string">10004</data>
             <data name="product/data/status" xsi:type="string">Enabled</data>
             <data name="product/data/short_description" xsi:type="string">Short description for Simple Product visibility in Catalog only</data>
@@ -200,7 +201,7 @@
             <data name="product/data/name" xsi:type="string">Simple Product %isolation%</data>
             <data name="product/data/sku" xsi:type="string">simple_sku_%isolation%</data>
             <data name="product/data/url_key" xsi:type="string">simple-sku-%isolation%</data>
-            <data name="product/data/tax_class_id/dataSet" xsi:type="string">Taxable Goods</data>
+            <data name="product/data/tax_class_id/dataset" xsi:type="string">Taxable Goods</data>
             <data name="product/data/price/value" xsi:type="string">10004</data>
             <data name="product/data/status" xsi:type="string">Enabled</data>
             <data name="product/data/short_description" xsi:type="string">Short description for Simple Product visibility in Search only</data>
@@ -221,7 +222,7 @@
             <data name="product/data/name" xsi:type="string">Simple Product %isolation%</data>
             <data name="product/data/sku" xsi:type="string">simple_sku_%isolation%</data>
             <data name="product/data/url_key" xsi:type="string">simple-sku-%isolation%</data>
-            <data name="product/data/tax_class_id/dataSet" xsi:type="string">Taxable Goods</data>
+            <data name="product/data/tax_class_id/dataset" xsi:type="string">Taxable Goods</data>
             <data name="product/data/price/value" xsi:type="string">300</data>
             <data name="product/data/status" xsi:type="string">Enabled</data>
             <data name="product/data/short_description" xsi:type="string">Short description for Simple Product with Tier price and Custom options</data>
@@ -229,9 +230,9 @@
             <data name="product/data/weight" xsi:type="string">51</data>
             <data name="product/data/stock_data/qty" xsi:type="string">658</data>
             <data name="product/data/stock_data/is_in_stock" xsi:type="string">In Stock</data>
-            <data name="product/data/custom_options/preset" xsi:type="string">drop_down_with_two_options</data>
-            <data name="product/data/price/preset" xsi:type="string">with_tier_price</data>
-            <data name="product/data/tier_price/preset" xsi:type="string">for_all_groups</data>
+            <data name="product/data/custom_options/dataset" xsi:type="string">drop_down_with_two_options</data>
+            <data name="product/data/price/dataset" xsi:type="string">with_tier_price</data>
+            <data name="product/data/tier_price/dataset" xsi:type="string">for_all_groups</data>
             <data name="configData" xsi:type="string">-</data>
             <constraint name="Mage\Catalog\Test\Constraint\AssertProductSaveMessage" next="Mage\Catalog\Test\Constraint\AssertProductTierPriceOnProductPage" />
             <constraint name="Mage\Catalog\Test\Constraint\AssertProductTierPriceOnProductPage" prev="Mage\Catalog\Test\Constraint\AssertProductSaveMessage" />
@@ -241,7 +242,7 @@
             <data name="product/data/name" xsi:type="string">Simple Product %isolation%</data>
             <data name="product/data/sku" xsi:type="string">simple_sku_%isolation%</data>
             <data name="product/data/url_key" xsi:type="string">simple-sku-%isolation%</data>
-            <data name="product/data/tax_class_id/dataSet" xsi:type="string">Taxable Goods</data>
+            <data name="product/data/tax_class_id/dataset" xsi:type="string">Taxable Goods</data>
             <data name="product/data/price/value" xsi:type="string">101</data>
             <data name="product/data/special_price" xsi:type="string">102</data>
             <data name="product/data/status" xsi:type="string">Enabled</data>
@@ -259,7 +260,7 @@
             <data name="product/data/name" xsi:type="string">Simple Product %isolation%</data>
             <data name="product/data/sku" xsi:type="string">simple_sku_%isolation%</data>
             <data name="product/data/url_key" xsi:type="string">simple-sku-%isolation%</data>
-            <data name="product/data/tax_class_id/dataSet" xsi:type="string">Taxable Goods</data>
+            <data name="product/data/tax_class_id/dataset" xsi:type="string">Taxable Goods</data>
             <data name="product/data/price/value" xsi:type="string">10000</data>
             <data name="product/data/status" xsi:type="string">Enabled</data>
             <data name="product/data/short_description" xsi:type="string">Short description for out of stock Simple product</data>
@@ -281,7 +282,7 @@
             <data name="product/data/name" xsi:type="string">Simple Product %isolation%</data>
             <data name="product/data/sku" xsi:type="string">simple_sku_%isolation%</data>
             <data name="product/data/url_key" xsi:type="string">simple-sku-%isolation%</data>
-            <data name="product/data/tax_class_id/dataSet" xsi:type="string">Taxable Goods</data>
+            <data name="product/data/tax_class_id/dataset" xsi:type="string">Taxable Goods</data>
             <data name="product/data/price/value" xsi:type="string">10003</data>
             <data name="product/data/status" xsi:type="string">Enabled</data>
             <data name="product/data/short_description" xsi:type="string">Short description for Out of Stock Simple Product</data>

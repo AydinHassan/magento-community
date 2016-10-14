@@ -19,7 +19,7 @@
  *
  * @category    design
  * @package     base_default
- * @copyright   Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright   Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 
@@ -28,8 +28,8 @@ ieHover = function() {
     items = $$('#nav ul', '#nav div', '.truncated_full_value .item-options', '.tool-tip');
     $$('#checkout-step-payment', '.tool-tip').each(function(el) {
         el.show();
-        el.setStyle({'visibility':'hidden'})
-    })
+        el.setStyle({'visibility':'hidden'});
+    });
     for (var j=0; j<items.length; j++) {
         iframe = document.createElement('IFRAME');
         iframe.src = BLANK_URL;
@@ -42,7 +42,7 @@ ieHover = function() {
     }
     $$('.tool-tip', '#checkout-step-payment').each(function(el) {
         el.hide();
-        el.setStyle({'visibility':'visible'})
-    })
-}
+        el.setStyle({'visibility':'visible'});
+    });
+};
 Event.observe(window, 'load', ieHover);

@@ -20,7 +20,7 @@
  *
  * @category    Tests
  * @package     Tests_Functional
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -34,12 +34,12 @@ use Mage\Admin\Test\Fixture\User;
 /**
  * Gws store groups data source.
  * Data keys:
- * - dataSets
+ * - datasets
  */
 class GwsStoreGroups implements FixtureInterface
 {
     /**
-     * Prepared dataSet data.
+     * Prepared dataset data.
      *
      * @var array
      */
@@ -68,11 +68,11 @@ class GwsStoreGroups implements FixtureInterface
     public function __construct(FixtureFactory $fixtureFactory, array $params, array $data = [])
     {
         $this->params = $params;
-        if (isset($data['dataSets'])) {
-            $dataSets = explode(',', $data['dataSets']);
-            foreach ($dataSets as $dataSet) {
+        if (isset($data['datasets'])) {
+            $datasets = explode(',', $data['datasets']);
+            foreach ($datasets as $dataset) {
                 /** @var StoreGroup $storeGroup */
-                $storeGroup = $fixtureFactory->createByCode('storeGroup', ['dataSet' => trim($dataSet)]);
+                $storeGroup = $fixtureFactory->createByCode('storeGroup', ['dataset' => trim($dataset)]);
                 $storeGroup->persist();
                 $this->data[] = $storeGroup->getGroupId();
                 $this->storeGroups[] = $storeGroup;

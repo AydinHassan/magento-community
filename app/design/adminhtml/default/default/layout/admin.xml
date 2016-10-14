@@ -21,7 +21,7 @@
  *
  * @category    design
  * @package     default_default
- * @copyright   Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright   Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 -->
@@ -71,6 +71,9 @@
         </reference>
     </adminhtml_permissions_role_editrole>
     <adminhtml_system_config_edit>
+        <reference name="content">
+            <block type="adminhtml/notification_curl" name="notification_curl" as="notification_curl" template="notification/curl.phtml"/>
+        </reference>
         <reference name="left">
             <block type="adminhtml/system_config_switcher" name="adminhtml.system.config.switcher" before="-"/>
         </reference>

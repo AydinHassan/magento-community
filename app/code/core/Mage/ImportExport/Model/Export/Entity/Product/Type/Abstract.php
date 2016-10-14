@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_ImportExport
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -96,7 +96,7 @@ abstract class Mage_ImportExport_Model_Export_Entity_Product_Type_Abstract
             $data = $this->_attributeOverrides[$attribute->getAttributeCode()];
 
             if (isset($data['options_method']) && method_exists($this, $data['options_method'])) {
-                $data['filter_options'] = $this->$data['options_method']();
+                $data['filter_options'] = $this->{$data['options_method']}();
             }
             $attribute->addData($data);
 

@@ -20,7 +20,7 @@
  *
  * @category    design
  * @package     default_default
- * @copyright   Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright   Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 ?>
@@ -120,7 +120,7 @@
                     <table class="form-list" cellspacing="0">
                         <tr>
                             <td style="padding-right: 8px;"><label for="password" class="nobr"><?php echo $this->__('User Password')?> <span class="required">*</span></label></td>
-                            <td><input type="password" name="password" id="password" class="required-entry"></td>
+                            <td><input type="password" name="password" id="password" class="required-entry" autocomplete="off"></td>
                         </tr>
                         <tr>
                             <td>&nbsp;</td>
@@ -151,7 +151,7 @@
                             </tr>
                             <tr>
                                 <td class="label"><label for="ftp_pass"><?php echo $this->__('FTP Password')?> <span class="required">*</span></label></td>
-                                <td class="value"><input type="password" name="ftp_pass" id="ftp_pass"></td>
+                                <td class="value"><input type="password" name="ftp_pass" id="ftp_pass" autocomplete="off"></td>
                             </tr>
                             <tr>
                                 <td class="label"><label for="ftp_path"><?php echo $this->__('Magento root directory')?></label></td>

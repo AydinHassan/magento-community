@@ -20,7 +20,7 @@
  *
  * @category    Tests
  * @package     Tests_Functional
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -61,7 +61,7 @@ class FilterProductListTest extends Injectable
      */
     public function __inject(FixtureFactory $fixtureFactory)
     {
-        $this->category = $fixtureFactory->createByCode('catalogCategory', ['dataSet' => 'anchor_category']);
+        $this->category = $fixtureFactory->createByCode('catalogCategory', ['dataset' => 'anchor_category']);
         $this->category->persist();
 
         return ['category' => $this->category];

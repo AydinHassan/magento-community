@@ -20,7 +20,7 @@
  *
  * @category    Tests
  * @package     Tests_Functional
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -57,7 +57,7 @@ class Curl extends AbstractCurl implements CustomerGroupInterface
         $data = $this->prepareData($fixture);
         $url = $_ENV['app_backend_url'] . $this->saveUrl . "?" . http_build_query($data);
         $curl = new BackendDecorator(new CurlTransport(), $this->_configuration);
-        $curl->write(CurlInterface::GET, $url, '1.1', []);
+        $curl->write($url, [], CurlInterface::GET);
         $response = $curl->read();
         $curl->close();
 
@@ -82,7 +82,7 @@ class Curl extends AbstractCurl implements CustomerGroupInterface
 
         $url = $_ENV['app_backend_url'] . 'customer_group/index/sort/time/dir/desc/';
         $curl = new BackendDecorator(new CurlTransport(), $this->_configuration);
-        $curl->write(CurlInterface::GET, $url, '1.1');
+        $curl->write($url, [], CurlInterface::GET);
         $response = $curl->read();
         $curl->close();
         preg_match($regExp, $response, $matches);

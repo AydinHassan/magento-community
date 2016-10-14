@@ -20,7 +20,7 @@
  *
  * @category    Tests
  * @package     Tests_Functional
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -85,8 +85,8 @@ class SetupConfigurationStep implements TestStepInterface
         $configData = array_map('trim', explode(',', $this->configData));
         $result = [];
 
-        foreach ($configData as $configDataSet) {
-            $config = $this->fixtureFactory->createByCode('configData', ['dataSet' => $configDataSet . $prefix]);
+        foreach ($configData as $configdataset) {
+            $config = $this->fixtureFactory->createByCode('configData', ['dataset' => $configdataset . $prefix]);
             if ($config->hasData('section')) {
                 $config->persist();
                 $result[] = $config;

@@ -20,7 +20,7 @@
  *
  * @category    Tests
  * @package     Tests_Functional
- * @copyright  Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @copyright  Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -126,11 +126,11 @@ class DuplicateProductEntityTest extends Injectable
      */
     protected function createProduct($productType)
     {
-        list($fixture, $dataSet) = explode('::', $productType);
+        list($fixture, $dataset) = explode('::', $productType);
         $product = $this->fixtureFactory->createByCode(
             $fixture,
             [
-                'dataSet' => $dataSet,
+                'dataset' => $dataset,
                 'data' => [
                     'category_ids' => [
                         'category' => $this->category,

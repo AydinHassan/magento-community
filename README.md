@@ -1,0 +1,1 @@
+## THIS REPOSITORY IS DEPRECATED - PLEASE USE https://github.com/firegento/magento. THERE WILL BE NO UPDATES HERE.
